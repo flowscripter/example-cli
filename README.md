@@ -21,7 +21,7 @@ Run the executable: `./example-cli`
 is neither signed nor notarised. This means a "Developer cannot be verified" error will be displayed when the CLI
 it is executed. This requires explicitly allowing the CLI to be executed via:
 
-_"System Preferences" > "Security & Privacy" > "General" > "Allow Anyway"_
+_"System Settings" > "Privacy & Security" > "Security" > "Allow Anyway"_
 
 ## Development
 
