@@ -6,11 +6,11 @@ def step_impl(context):
     context.pexpect_wrapper.start()
 
 
-@then('the executable should complete successfully')
-def step_impl(context):
+@then('the executable should complete with exit code {code:d}')
+def step_impl(context, code):
     context.pexpect_wrapper.expect_eof()
     status = context.pexpect_wrapper.complete()
-    assert status == 0, 'unexpected exit status: {}'.format(status)
+    assert status == code, 'unexpected exit status: {}'.format(status)
 
 
 @then('the executable should have output "{message}"')
