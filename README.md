@@ -23,6 +23,7 @@ it is executed. This requires explicitly allowing the CLI to be executed via:
 
 _"System Settings" > "Privacy & Security" > "Security" > "Allow Anyway"_
 
+
 ## Development
 
 Run: `deno run --allow-env mod.ts`
