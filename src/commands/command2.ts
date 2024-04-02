@@ -94,7 +94,7 @@ const command2: SubCommand = {
       ],
     },
     {
-      exampleArguments: 'true 1 hello -b -n 2 -s "hello world" -c.n.1 -c.n.2',
+      exampleArguments: 'true 1 hello -b -n 2 -s "hello world" -c.n=1 -c.n=2',
       description: "Complex arguments with short aliases",
       output: [
         "{",
