@@ -27,9 +27,13 @@ _"System Settings" > "Privacy & Security" > "Security" > "Allow Anyway"_
 
 Run: `deno run --allow-env mod.ts`
 
-> During development this can be used to validate command definitions: `CLI_VALIDATE_ALL=1 deno run --allow-env mod.ts`
+> During development this can be used to validate command definitions:
+> 
+> `CLI_VALIDATE_ALL=1 deno run --allow-env mod.ts`
 
-> During development this can be used to enable framework logging: `CLI_DEBUG=1 deno run --allow-env mod.ts`
+> During development this can be used to enable framework logging:
+> 
+> `CLI_DEBUG=1 deno run --allow-env mod.ts`
 
 Test: `deno test -A`
 
