@@ -9,7 +9,7 @@
 
 > Simple example CLI using [dynamic-cli-framework](https://github.com/flowscripter/dynamic-cli-framework).
 
-<img src="./demo.svg" alt="example-cli demo screen recording">
+<img width="600" src="./demo.svg" alt="example-cli demo screen recording">
 
 ## Binary Executable Usage
 

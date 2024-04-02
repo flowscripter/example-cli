@@ -1,1 +1,1 @@
-export * from "https://raw.githubusercontent.com/flowscripter/dynamic-cli-framework/v1.0.2/mod.ts";
+export * from "https://deno.land/x/flowscripter_dynamic_cli_framework@v1.0.3/mod.ts";
