@@ -7,33 +7,35 @@
 [![deno doc](https://doc.deno.land/badge.svg)](https://doc.deno.land/https/raw.githubusercontent.com/flowscripter/example-cli/main/mod.ts)
 [![license: MIT](https://img.shields.io/github/license/flowscripter/example-cli)](https://github.com/flowscripter/example-cli/blob/main/LICENSE)
 
-> Simple example CLI using [dynamic-cli-framework](https://github.com/flowscripter/dynamic-cli-framework).
+> Simple example CLI using
+> [dynamic-cli-framework](https://github.com/flowscripter/dynamic-cli-framework).
 
 <img width="600" src="./demo.svg" alt="example-cli demo screen recording">
 
 ## Binary Executable Usage
 
-Download and extract zip from: https://github.com/flowscripter/example-cli/releases
+Download and extract zip from:
+https://github.com/flowscripter/example-cli/releases
 
 Run the executable: `./example-cli`
 
-**NOTE**: Due to this issue https://github.com/denoland/deno/issues/11154 the MacOS executable
-is neither signed nor notarised. This means a "Developer cannot be verified" error will be displayed when the CLI
-it is executed. This requires explicitly allowing the CLI to be executed via:
+**NOTE**: Due to this issue https://github.com/denoland/deno/issues/11154 the
+MacOS executable is neither signed nor notarised. This means a "Developer cannot
+be verified" error will be displayed when the CLI it is executed. This requires
+explicitly allowing the CLI to be executed via:
 
 _"System Settings" > "Privacy & Security" > "Security" > "Allow Anyway"_
-
 
 ## Development
 
 Run: `deno run --allow-env mod.ts`
 
 > During development this can be used to validate command definitions:
-> 
+>
 > `CLI_VALIDATE_ALL=1 deno run --allow-env mod.ts`
 
 > During development this can be used to enable framework logging:
-> 
+>
 > `CLI_DEBUG=1 deno run --allow-env mod.ts`
 
 Test: `deno test -A`
@@ -48,7 +50,9 @@ Refer to [functional_tests/README.md](functional_tests/README.md)
 
 ## Documentation
 
-Refer to the [dynamic-cli-framework](https://github.com/flowscripter/dynamic-cli-framework) documentation.
+Refer to the
+[dynamic-cli-framework](https://github.com/flowscripter/dynamic-cli-framework)
+documentation.
 
 ## License
 

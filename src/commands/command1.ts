@@ -1,12 +1,12 @@
 import {
-  ArgumentValues,
+  type ArgumentValues,
   ASCII_BANNER_GENERATOR_SERVICE_ID,
-  AsciiBannerGeneratorService,
-  Context,
+  type AsciiBannerGeneratorService,
+  type Context,
   Icon,
   PRINTER_SERVICE_ID,
-  PrinterService,
-  SubCommand,
+  type PrinterService,
+  type SubCommand,
 } from "@flowscripter/dynamic-cli-framework";
 
 async function sleep(seconds: number): Promise<void> {
@@ -18,7 +18,7 @@ const command1: SubCommand = {
   description: "Demonstrates printer service features",
   options: [],
   positionals: [],
-  execute: async(
+  execute: async (
     context: Context,
     _argumentValues: ArgumentValues,
   ): Promise<void> => {
