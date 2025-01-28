@@ -1,14 +1,14 @@
 import {
-  ArgumentValues,
+  type ArgumentValues,
   ArgumentValueTypeName,
   ComplexValueTypeName,
-  Context,
+  type Context,
   PRINTER_SERVICE_ID,
-  PrinterService,
-  SubCommand,
+  type PrinterService,
+  type SubCommand,
   SYNTAX_HIGHLIGHTER_SERVICE_ID,
-  SyntaxHighlighterService,
-} from "../../deps.ts";
+  type SyntaxHighlighterService,
+} from "@flowscripter/dynamic-cli-framework";
 
 const command2: SubCommand = {
   name: "command2",

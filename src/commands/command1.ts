@@ -1,15 +1,13 @@
 import {
-  ArgumentValues,
+  type ArgumentValues,
   ASCII_BANNER_GENERATOR_SERVICE_ID,
-  AsciiBannerGeneratorService,
-  Context,
-  PRINTER_SERVICE_ID,
-  PrinterService,
-  SubCommand,
-} from "../../deps.ts";
-import {
+  type AsciiBannerGeneratorService,
+  type Context,
   Icon,
-} from "https://raw.githubusercontent.com/flowscripter/dynamic-cli-framework/v1.0.0/src/api/service/core/PrinterService.ts";
+  PRINTER_SERVICE_ID,
+  type PrinterService,
+  type SubCommand,
+} from "@flowscripter/dynamic-cli-framework";
 
 async function sleep(seconds: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, seconds * 1000));
@@ -20,10 +18,10 @@ const command1: SubCommand = {
   description: "Demonstrates printer service features",
   options: [],
   positionals: [],
-  async execute(
+  execute: async (
     context: Context,
     _argumentValues: ArgumentValues,
-  ): Promise<void> {
+  ): Promise<void> => {
     const printerService = context.getServiceById(
       PRINTER_SERVICE_ID,
     ) as PrinterService;
