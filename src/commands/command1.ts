@@ -3,13 +3,11 @@ import {
   ASCII_BANNER_GENERATOR_SERVICE_ID,
   AsciiBannerGeneratorService,
   Context,
+  Icon,
   PRINTER_SERVICE_ID,
   PrinterService,
   SubCommand,
-} from "../../deps.ts";
-import {
-  Icon,
-} from "https://raw.githubusercontent.com/flowscripter/dynamic-cli-framework/v1.0.0/src/api/service/core/PrinterService.ts";
+} from "@flowscripter/dynamic-cli-framework";
 
 async function sleep(seconds: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, seconds * 1000));
@@ -20,10 +18,10 @@ const command1: SubCommand = {
   description: "Demonstrates printer service features",
   options: [],
   positionals: [],
-  async execute(
+  execute: async(
     context: Context,
     _argumentValues: ArgumentValues,
-  ): Promise<void> {
+  ): Promise<void> => {
     const printerService = context.getServiceById(
       PRINTER_SERVICE_ID,
     ) as PrinterService;

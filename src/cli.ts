@@ -3,7 +3,7 @@ import {
   BannerServiceProvider,
   launchMultiCommandCLI,
   SyntaxHighlighterServiceProvider,
-} from "../deps.ts";
+} from "@flowscripter/dynamic-cli-framework";
 import command1 from "./commands/command1.ts";
 import command2 from "./commands/command2.ts";
 
