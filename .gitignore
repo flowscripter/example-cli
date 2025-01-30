@@ -1,3 +1,4 @@
 /example-cli
 /venv/
 functional_tests/features/support/__pycache__/
+/functional_tests/venv/

@@ -1,3 +1,5 @@
 import { cli } from "./src/cli.ts";
 
-await cli(import.meta.url);
+import packageInfo from "./deno.json" with { type: "json" };
+
+await cli(packageInfo.version);
