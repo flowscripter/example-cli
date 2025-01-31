@@ -1,10 +1,10 @@
 {
   "version": "4",
   "specifiers": {
-    "jsr:@flowscripter/dynamic-cli-framework@^1.0.5": "1.0.5",
+    "jsr:@flowscripter/dynamic-cli-framework@^1.0.6": "1.0.6",
     "jsr:@std/assert@^1.0.11": "1.0.11",
     "jsr:@std/fmt@^1.0.4": "1.0.4",
-    "jsr:@std/fs@^1.0.9": "1.0.9",
+    "jsr:@std/fs@^1.0.9": "1.0.10",
     "jsr:@std/internal@^1.0.5": "1.0.5",
     "jsr:@std/io@0.225": "0.225.1",
     "jsr:@std/log@~0.224.13": "0.224.13",
@@ -15,8 +15,8 @@
     "npm:highlight.js@^11.11.1": "11.11.1"
   },
   "jsr": {
-    "@flowscripter/dynamic-cli-framework@1.0.5": {
-      "integrity": "1175172865229f137fce62ae589cd513ea24c183383a2dfe2eec4f09f15483fd",
+    "@flowscripter/dynamic-cli-framework@1.0.6": {
+      "integrity": "b98a14610c7a6f8678339943ae38a0cfdf3ca98b5fb123a7162bd1c851d6af1d",
       "dependencies": [
         "jsr:@std/fmt",
         "jsr:@std/log",
@@ -36,8 +36,8 @@
     "@std/fmt@1.0.4": {
       "integrity": "e14fe5bedee26f80877e6705a97a79c7eed599e81bb1669127ef9e8bc1e29a74"
     },
-    "@std/fs@1.0.9": {
-      "integrity": "3eef7e3ed3d317b29432c7dcb3b20122820dbc574263f721cb0248ad91bad890"
+    "@std/fs@1.0.10": {
+      "integrity": "bf041f9d7a0a460817f0421be8946d0e06011b3433e6c83a215628de5e3c7c2c"
     },
     "@std/internal@1.0.5": {
       "integrity": "54a546004f769c1ac9e025abd15a76b6671ddc9687e2313b67376125650dc7ba"
@@ -64,11 +64,11 @@
         "@types/unist"
       ]
     },
-    "@types/unist@3.0.2": {
-      "integrity": "sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ=="
+    "@types/unist@3.0.3": {
+      "integrity": "sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q=="
     },
-    "chalk@5.3.0": {
-      "integrity": "sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w=="
+    "chalk@5.4.1": {
+      "integrity": "sha512-zgVZuo2WcZgfUEmsn6eO3kINexW8RAE4maiQ8QNs8CtpPCSyMiYsULR3HQYkm3w8FIA3SberyMJMSldGsW+U3w=="
     },
     "dequal@2.0.3": {
       "integrity": "sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA=="
@@ -111,7 +111,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@flowscripter/dynamic-cli-framework@^1.0.5",
+      "jsr:@flowscripter/dynamic-cli-framework@^1.0.6",
       "jsr:@std/assert@^1.0.11"
     ]
   }
