@@ -1,6 +1,6 @@
 {
   "name": "@flowscripter/example-cli",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "exports": "./mod.ts",
   "imports": {
     "@flowscripter/dynamic-cli-framework": "jsr:@flowscripter/dynamic-cli-framework@^1.0.6",
