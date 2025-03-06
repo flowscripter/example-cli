@@ -37,14 +37,17 @@ In PowerShell:
 #### Manual Install
 
 You can download and extract the binary zip files from the
-[releases](https://github.com/flowscripter/example-cli/releases)
-page.
+[releases](https://github.com/flowscripter/example-cli/releases) page.
 
 ## Functional Tests
 
 Refer to [functional_tests/README.md](functional_tests/README.md)
 
 ## Development
+
+Install dependencies:
+
+`bun install`
 
 Test:
 
