@@ -7,12 +7,12 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/bun": "^1.2.4"
+    "@types/bun": "^1.2.5"
   },
   "peerDependencies": {
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@flowscripter/dynamic-cli-framework": "^1.0.3"
+    "@flowscripter/dynamic-cli-framework": "^1.0.7"
   }
 }
