@@ -1,5 +1,18 @@
 {
   "name": "@flowscripter/example-cli",
+  "description": "Simple example CLI using https://github.com/flowscripter/dynamic-cli-framework",
+  "repository": "@flowscripter/example-cli",
+  "license": "MIT",
+  "keywords": [
+    "bun",
+    "example",
+    "plugin",
+    "framework",
+    "dynamic",
+    "import",
+    "executable",
+    "cli"
+  ],
   "module": "index.ts",
   "type": "module",
   "version": "1.0.1",
@@ -13,6 +26,6 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@flowscripter/dynamic-cli-framework": "^1.0.7"
+    "@flowscripter/dynamic-cli-framework": "^1.0.8"
   }
 }

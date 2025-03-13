@@ -16,7 +16,7 @@ export async function cli(): Promise<void> {
   await launchMultiCommandCLI(
     [command1, command2],
     "Simple example CLI using dynamic-cli-framework.",
-    `example-cli`, // alternatively, name can be derived from executable name if this is not defined
+    "example-cli", // alternatively, name can be derived from executable name if this is not defined
     packageJson.version,
     false, // simple example, so disable env vars support for configuration defaults
     false, // simple example, so disable configuration support
