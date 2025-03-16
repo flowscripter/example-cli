@@ -1,7 +1,11 @@
 {
   "name": "@flowscripter/example-cli",
   "description": "Simple example CLI using https://github.com/flowscripter/dynamic-cli-framework",
-  "repository": "@flowscripter/example-cli",
+  "homepage": "https://github.com/flowscripter/example-cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flowscripter/example-cli.git"
+  },
   "license": "MIT",
   "keywords": [
     "bun",
