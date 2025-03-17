@@ -30,6 +30,6 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@flowscripter/dynamic-cli-framework": "^1.0.8"
+    "@flowscripter/dynamic-cli-framework": "^1.0.9"
   }
 }
