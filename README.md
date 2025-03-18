@@ -59,11 +59,11 @@ Run:
 
 > During development this can be used to validate command definitions:
 >
-> `CLI_VALIDATE_ALL=1 bun run index.ts`
+> `DYNAMIC_CLI_FRAMEWORK_VALIDATE_ALL=1 bun run index.ts`
 
 > During development this can be used to enable framework logging:
 >
-> `CLI_DEBUG=1 bun run index.ts`
+> `DYNAMIC_CLI_FRAMEWORK_DEBUG=1 bun run index.ts`
 
 Compile binary:
 
