@@ -24,12 +24,12 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/bun": "^1.2.8"
+    "@types/bun": "^1.2.9"
   },
   "peerDependencies": {
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@flowscripter/dynamic-cli-framework": "^1.1.2"
+    "@flowscripter/dynamic-cli-framework": "^1.1.3"
   }
 }
