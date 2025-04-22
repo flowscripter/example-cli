@@ -3,7 +3,6 @@
 [![version](https://img.shields.io/github/v/release/flowscripter/example-cli?sort=semver)](https://github.com/flowscripter/example-cli/releases)
 [![build](https://img.shields.io/github/actions/workflow/status/flowscripter/example-cli/release-bun-executable.yml)](https://github.com/flowscripter/example-cli/actions/workflows/release-bun-executable.yml)
 [![coverage](https://codecov.io/gh/flowscripter/example-cli/branch/main/graph/badge.svg?token=EMFT2938ZF)](https://codecov.io/gh/flowscripter/example-cli)
-[![docs](https://img.shields.io/badge/docs-API-blue)](https://flowscripter.github.io/example-cli/index.html)
 [![license: MIT](https://img.shields.io/github/license/flowscripter/example-cli)](https://github.com/flowscripter/example-cli/blob/main/LICENSE)
 
 > Simple example CLI using
@@ -80,21 +79,11 @@ Lint:
 
 `deno lint index.ts src/ tests/`
 
-Generate HTML API Documentation:
-
-`deno doc --html --name=example-cli index.ts`
-
 ## Documentation
 
 Refer to the
 [dynamic-cli-framework](https://github.com/flowscripter/dynamic-cli-framework)
 documentation.
-
-### API
-
-Link to auto-generated API docs:
-
-[API Documentation](https://flowscripter.github.io/example-cli/index.html)
 
 ## License
 
