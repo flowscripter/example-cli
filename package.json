@@ -27,7 +27,7 @@
     "@types/bun": "^1.2.23"
   },
   "peerDependencies": {
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@flowscripter/dynamic-cli-framework": "^1.1.6"
