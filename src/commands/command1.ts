@@ -65,7 +65,9 @@ const command1: SubCommand = {
 
     await printerService.print(
       printerService.green(
-        await asciiBannerGenerator.generate("Goodbye!", "standard"),
+        await asciiBannerGenerator.generate("Goodbye!", {
+          fontName: "standard",
+        }),
       ) + "\n",
     );
   },
