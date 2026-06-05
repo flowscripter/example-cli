@@ -10,9 +10,10 @@ import {
   type SyntaxHighlighterService,
 } from "@flowscripter/dynamic-cli-framework";
 
-const command2: SubCommand = {
-  name: "command2",
-  description: "Demonstrates argument features and syntax highlighter service",
+const argParsing: SubCommand = {
+  name: "arg-parsing",
+  description:
+    "Demonstrates argument parsing, types, validation, and syntax-highlighted output",
   options: [
     {
       name: "booleanOption",
@@ -134,4 +135,4 @@ const command2: SubCommand = {
   },
 };
 
-export default command2;
+export default argParsing;

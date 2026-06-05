@@ -11,10 +11,10 @@ import {
   type SubCommand,
 } from "@flowscripter/dynamic-cli-framework";
 
-const command4: SubCommand = {
-  name: "command4",
+const prompting: SubCommand = {
+  name: "prompting",
   description:
-    "Demonstrates prompts, argument value prompts, and custom argument validation",
+    "Demonstrates prompts, argument validation, argument value prompting, and URL opening",
   options: [
     {
       name: "age",
@@ -90,10 +90,23 @@ const command4: SubCommand = {
       options: [],
     };
 
+    const openUrlPrompt: Prompt = {
+      name: "openProject",
+      promptText: "Open the project page?",
+      type: PromptType.OPEN_URL,
+      options: [
+        {
+          displayValue: "Flowscripter GitHub",
+          returnedValue: "https://github.com/flowscripter",
+        },
+      ],
+    };
+
     const results = await prompterService.promptAll([
       colorPrompt,
       languagePrompt,
       notificationsPrompt,
+      openUrlPrompt,
     ]);
 
     await printerService.print("Prompt results:\n");
@@ -105,4 +118,4 @@ const command4: SubCommand = {
   },
 };
 
-export default command4;
+export default prompting;
