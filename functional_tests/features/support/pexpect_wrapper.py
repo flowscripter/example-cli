@@ -1,6 +1,13 @@
-import pexpect
 import logging
+import platform
+import pexpect
+
 log = logging.getLogger("pexpect_wrapper")
+
+IS_WINDOWS = platform.system() == 'Windows'
+
+if IS_WINDOWS:
+    from pexpect.popen_spawn import PopenSpawn
 
 
 class PExpectWrapper:
@@ -16,7 +23,10 @@ class PExpectWrapper:
         cmd = self.executable
         if args:
             cmd = cmd + ' ' + args
-        self.child = pexpect.spawn(cmd, encoding='utf-8', timeout=30)
+        if IS_WINDOWS:
+            self.child = PopenSpawn(cmd, encoding='utf-8', timeout=30)
+        else:
+            self.child = pexpect.spawn(cmd, encoding='utf-8', timeout=30)
 
     def expect(self, message):
         assert self.child is not None
@@ -39,10 +49,16 @@ class PExpectWrapper:
     def complete(self):
         assert self.child is not None
 
-        self.child.close()
-        exit_status = self.child.exitstatus
-        if exit_status is None:
-            exit_status = self.child.signalstatus or -1
+        if IS_WINDOWS:
+            self.child.wait()
+            exit_status = self.child.exitstatus
+            if exit_status is None:
+                exit_status = -1
+        else:
+            self.child.close()
+            exit_status = self.child.exitstatus
+            if exit_status is None:
+                exit_status = self.child.signalstatus or -1
 
         self.output = self.child.before.split('\n') if self.child.before else []
 
