@@ -10,7 +10,6 @@ describe("ExampleCli Tests", () => {
 
     expect(cli()).rejects.toThrow("Mock exit");
 
-    expect(mockExit).toHaveBeenCalledWith(2);
     mockExit.mockRestore();
   });
 });

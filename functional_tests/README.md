@@ -6,7 +6,7 @@ Ensure the executable is built:
 
     bun build ../index.ts --compile --outfile /tmp/example-cli
 
-Install requirements:
+Install requirements (virtual environment required):
 
     pip3 install -r pip-requirements.txt
 

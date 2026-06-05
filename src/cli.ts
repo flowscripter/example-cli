@@ -1,30 +1,34 @@
 import {
   AsciiBannerGeneratorServiceProvider,
   BannerServiceProvider,
+  DataDumpGeneratorServiceProvider,
   launchMultiCommandCLI,
   SyntaxHighlighterServiceProvider,
+  TreePrinterServiceProvider,
 } from "@flowscripter/dynamic-cli-framework";
-import command1 from "./commands/command1.ts";
-import command2 from "./commands/command2.ts";
+import demo from "./commands/demo.ts";
 import packageJson from "../package.json";
 
-/**
- * Run the CLI.
- */
 export async function cli(): Promise<void> {
-  // use launchMultiCommandCLI to show 2 sample commands
   await launchMultiCommandCLI(
-    [command1, command2],
+    [demo],
     "Simple example CLI using dynamic-cli-framework.",
-    "example-cli", // alternatively, name can be derived from executable name if this is not defined
+    "example-cli",
     packageJson.version,
-    false, // simple example, so disable env vars support for configuration defaults
-    false, // simple example, so disable configuration support
-    false, // simple example, so disable key-value service
     [
-      new BannerServiceProvider(50), // renders an ascii banner on CLI launch
-      new AsciiBannerGeneratorServiceProvider(45), // exposes ascii banner generation service
-      new SyntaxHighlighterServiceProvider(40), // exposes syntax highlighting service
+      new BannerServiceProvider(50),
+      new AsciiBannerGeneratorServiceProvider(45),
+      new SyntaxHighlighterServiceProvider(40),
+      new TreePrinterServiceProvider(35),
+      new DataDumpGeneratorServiceProvider(30),
     ],
+    {
+      configFileSupportEnabled: true,
+      keyValueServiceEnabled: true,
+      secretServiceEnabled: true,
+      argumentPrompterServiceEnabled: true,
+      completionServiceEnabled: true,
+      imagePrinterServiceEnabled: true,
+    },
   );
 }
