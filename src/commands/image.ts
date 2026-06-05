@@ -33,7 +33,11 @@ const image: SubCommand = {
       imagePath = path.join(import.meta.dir, "..", "..", "assets", "logo.png");
     }
     const imageBuffer = await Bun.file(imagePath).bytes();
-    const imageOutput = await imagePrinterService.image(imageBuffer, 25, "#FFFFFF");
+    const imageOutput = await imagePrinterService.image(
+      imageBuffer,
+      25,
+      "#FFFFFF",
+    );
     await printerService.print(imageOutput + "\n");
   },
 };
