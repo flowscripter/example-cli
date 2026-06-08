@@ -45,16 +45,9 @@ const prompting: SubCommand = {
       },
     },
   ],
-  async execute(
-    context: Context,
-    argumentValues: ArgumentValues,
-  ): Promise<void> {
-    const printerService = context.getServiceById(
-      PRINTER_SERVICE_ID,
-    ) as PrinterService;
-    const prompterService = context.getServiceById(
-      PROMPTER_SERVICE_ID,
-    ) as PrompterService;
+  async execute(context: Context, argumentValues: ArgumentValues): Promise<void> {
+    const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
+    const prompterService = context.getServiceById(PROMPTER_SERVICE_ID) as PrompterService;
 
     await printerService.print(
       "Argument values: " + JSON.stringify(argumentValues, null, 2) + "\n",
@@ -111,9 +104,7 @@ const prompting: SubCommand = {
 
     await printerService.print("Prompt results:\n");
     for (const result of results) {
-      await printerService.print(
-        `  ${result.name}: ${JSON.stringify(result.value)}\n`,
-      );
+      await printerService.print(`  ${result.name}: ${JSON.stringify(result.value)}\n`);
     }
   },
 };

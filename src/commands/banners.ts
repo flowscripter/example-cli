@@ -11,17 +11,11 @@ import {
 
 const banners: SubCommand = {
   name: "banners",
-  description:
-    "Demonstrates chisel font ASCII banner and ASCII banner subtitle",
+  description: "Demonstrates chisel font ASCII banner and ASCII banner subtitle",
   options: [],
   positionals: [],
-  execute: async (
-    context: Context,
-    _argumentValues: ArgumentValues,
-  ): Promise<void> => {
-    const printerService = context.getServiceById(
-      PRINTER_SERVICE_ID,
-    ) as PrinterService;
+  execute: async (context: Context, _argumentValues: ArgumentValues): Promise<void> => {
+    const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const asciiBannerService = context.getServiceById(
       ASCII_BANNER_GENERATOR_SERVICE_ID,
     ) as AsciiBannerGeneratorService;

@@ -12,8 +12,7 @@ import {
 
 const argParsing: SubCommand = {
   name: "arg-parsing",
-  description:
-    "Demonstrates argument parsing, types, validation, and syntax-highlighted output",
+  description: "Demonstrates argument parsing, types, validation, and syntax-highlighted output",
   options: [
     {
       name: "booleanOption",
@@ -115,22 +114,14 @@ const argParsing: SubCommand = {
       ],
     },
   ],
-  async execute(
-    context: Context,
-    argumentValues: ArgumentValues,
-  ): Promise<void> {
-    const printerService = context.getServiceById(
-      PRINTER_SERVICE_ID,
-    ) as PrinterService;
+  async execute(context: Context, argumentValues: ArgumentValues): Promise<void> {
+    const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const highlighterService = context.getServiceById(
       SYNTAX_HIGHLIGHTER_SERVICE_ID,
     ) as SyntaxHighlighterService;
 
     await printerService.print(
-      highlighterService.highlight(
-        JSON.stringify(argumentValues, null, 2),
-        "json",
-      ) + "\n",
+      highlighterService.highlight(JSON.stringify(argumentValues, null, 2), "json") + "\n",
     );
   },
 };

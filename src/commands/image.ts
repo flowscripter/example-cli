@@ -15,13 +15,8 @@ const image: SubCommand = {
   description: "Demonstrates image rendering in the terminal",
   options: [],
   positionals: [],
-  execute: async (
-    context: Context,
-    _argumentValues: ArgumentValues,
-  ): Promise<void> => {
-    const printerService = context.getServiceById(
-      PRINTER_SERVICE_ID,
-    ) as PrinterService;
+  execute: async (context: Context, _argumentValues: ArgumentValues): Promise<void> => {
+    const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const imagePrinterService = context.getServiceById(
       IMAGE_PRINTER_SERVICE_ID,
     ) as ImagePrinterService;
@@ -33,11 +28,7 @@ const image: SubCommand = {
       imagePath = path.join(import.meta.dir, "..", "..", "assets", "logo.png");
     }
     const imageBuffer = await Bun.file(imagePath).bytes();
-    const imageOutput = await imagePrinterService.image(
-      imageBuffer,
-      25,
-      "#FFFFFF",
-    );
+    const imageOutput = await imagePrinterService.image(imageBuffer, 25, "#FFFFFF");
     await printerService.print(imageOutput + "\n");
   },
 };

@@ -13,16 +13,9 @@ const configuration: SubCommand = {
   description: "Demonstrates secrets storage and key-value service",
   options: [],
   positionals: [],
-  async execute(
-    context: Context,
-    _argumentValues: ArgumentValues,
-  ): Promise<void> {
-    const printerService = context.getServiceById(
-      PRINTER_SERVICE_ID,
-    ) as PrinterService;
-    const keyValueService = context.getServiceById(
-      KEY_VALUE_SERVICE_ID,
-    ) as KeyValueService;
+  async execute(context: Context, _argumentValues: ArgumentValues): Promise<void> {
+    const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
+    const keyValueService = context.getServiceById(KEY_VALUE_SERVICE_ID) as KeyValueService;
 
     // --- Key-Value Storage ---
     await printerService.print("--- Key-Value Storage ---\n");
@@ -63,9 +56,7 @@ const configuration: SubCommand = {
       await printerService.print("Deleted secret: demo-api-key\n");
     } catch (error) {
       await printerService.warn(
-        `Secret storage unavailable (OS keyring may be locked): ${
-          (error as Error).message
-        }\n`,
+        `Secret storage unavailable (OS keyring may be locked): ${(error as Error).message}\n`,
       );
     }
   },
