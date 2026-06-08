@@ -28,17 +28,11 @@ async function sleep(seconds: number): Promise<void> {
 
 const printing: SubCommand = {
   name: "printing",
-  description:
-    "Demonstrates printer, tree, table, data dump, and banner output features",
+  description: "Demonstrates printer, tree, table, data dump, and banner output features",
   options: [],
   positionals: [],
-  execute: async (
-    context: Context,
-    _argumentValues: ArgumentValues,
-  ): Promise<void> => {
-    const printerService = context.getServiceById(
-      PRINTER_SERVICE_ID,
-    ) as PrinterService;
+  execute: async (context: Context, _argumentValues: ArgumentValues): Promise<void> => {
+    const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const asciiBannerGenerator = context.getServiceById(
       ASCII_BANNER_GENERATOR_SERVICE_ID,
     ) as AsciiBannerGeneratorService;
@@ -74,12 +68,7 @@ const printing: SubCommand = {
 
     await sleep(0.5);
 
-    const handle1 = await printerService.showProgressBar(
-      "sec",
-      "Waiting 3 seconds",
-      3,
-      0,
-    );
+    const handle1 = await printerService.showProgressBar("sec", "Waiting 3 seconds", 3, 0);
     await sleep(1);
     printerService.updateProgressBar(handle1, 1);
     await sleep(1);
@@ -119,21 +108,11 @@ const printing: SubCommand = {
 
     // --- Colors ---
     await printerService.print("--- Colors ---\n");
-    await printerService.print(
-      printerService.green("Green text") + "\n",
-    );
-    await printerService.print(
-      printerService.backgroundRed("Background Red") + "\n",
-    );
-    await printerService.print(
-      printerService.backgroundBlue("Background Blue") + "\n",
-    );
-    await printerService.print(
-      printerService.backgroundGreen("Background Green") + "\n",
-    );
-    await printerService.print(
-      printerService.backgroundCyan("Background Cyan") + "\n",
-    );
+    await printerService.print(printerService.green("Green text") + "\n");
+    await printerService.print(printerService.backgroundRed("Background Red") + "\n");
+    await printerService.print(printerService.backgroundBlue("Background Blue") + "\n");
+    await printerService.print(printerService.backgroundGreen("Background Green") + "\n");
+    await printerService.print(printerService.backgroundCyan("Background Cyan") + "\n");
     await printerService.print(
       printerService.backgroundColor("Custom Hex Background", "#FF6600") + "\n",
     );
@@ -141,10 +120,7 @@ const printing: SubCommand = {
     // --- Hyperlink ---
     await printerService.print("--- Hyperlink ---\n");
     await printerService.print(
-      printerService.hyperlink(
-        "Flowscripter on GitHub",
-        "https://github.com/flowscripter",
-      ) + "\n",
+      printerService.hyperlink("Flowscripter on GitHub", "https://github.com/flowscripter") + "\n",
     );
 
     // --- ASCII Banner ---

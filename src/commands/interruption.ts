@@ -15,20 +15,12 @@ async function sleep(seconds: number): Promise<void> {
 
 const interruption: SubCommand = {
   name: "interruption",
-  description:
-    "Demonstrates graceful shutdown with signal handling (press Ctrl+C to interrupt)",
+  description: "Demonstrates graceful shutdown with signal handling (press Ctrl+C to interrupt)",
   options: [],
   positionals: [],
-  execute: async (
-    context: Context,
-    _argumentValues: ArgumentValues,
-  ): Promise<void> => {
-    const printerService = context.getServiceById(
-      PRINTER_SERVICE_ID,
-    ) as PrinterService;
-    const shutdownService = context.getServiceById(
-      SHUTDOWN_SERVICE_ID,
-    ) as ShutdownService;
+  execute: async (context: Context, _argumentValues: ArgumentValues): Promise<void> => {
+    const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
+    const shutdownService = context.getServiceById(SHUTDOWN_SERVICE_ID) as ShutdownService;
 
     await printerService.print(
       "Entering long-running mode. Press Ctrl+C to request graceful shutdown...\n",
@@ -42,10 +34,7 @@ const interruption: SubCommand = {
 
         if (shutdownService.isShutdownRequested) {
           await printerService.hideSpinner();
-          await printerService.print(
-            "Shutdown requested, finishing gracefully...\n",
-            Icon.ALERT,
-          );
+          await printerService.print("Shutdown requested, finishing gracefully...\n", Icon.ALERT);
           break;
         }
       }

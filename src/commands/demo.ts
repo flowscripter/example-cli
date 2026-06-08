@@ -1,7 +1,4 @@
-import {
-  type Context,
-  type GroupCommand,
-} from "@flowscripter/dynamic-cli-framework";
+import { type Context, type GroupCommand } from "@flowscripter/dynamic-cli-framework";
 import printing from "./printing.ts";
 import prompting from "./prompting.ts";
 import argParsing from "./arg-parsing.ts";

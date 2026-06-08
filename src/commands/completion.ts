@@ -14,21 +14,11 @@ const completion: SubCommand = {
   description: "Demonstrates shell completion service",
   options: [],
   positionals: [],
-  execute: async (
-    context: Context,
-    _argumentValues: ArgumentValues,
-  ): Promise<void> => {
-    const printerService = context.getServiceById(
-      PRINTER_SERVICE_ID,
-    ) as PrinterService;
-    const completionService = context.getServiceById(
-      COMPLETION_SERVICE_ID,
-    ) as CompletionService;
+  execute: async (context: Context, _argumentValues: ArgumentValues): Promise<void> => {
+    const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
+    const completionService = context.getServiceById(COMPLETION_SERVICE_ID) as CompletionService;
 
-    const bootstrapScript = completionService.getBootstrapScript(
-      ShellType.BASH,
-      "example-cli",
-    );
+    const bootstrapScript = completionService.getBootstrapScript(ShellType.BASH, "example-cli");
     await printerService.print(`Bash bootstrap script:\n${bootstrapScript}\n`);
 
     const configPath = completionService.getDefaultConfigPath(ShellType.BASH);
