@@ -1,25 +1,34 @@
 #!/bin/sh
 
-set -e  # Exit on error
+set -e
 
-# Define the download URL
-URL="https://github.com/flowscripter/example-cli/releases/latest/download/example-cli_Linux_x86_64.zip"
+ARCH=$(uname -m)
+case "$ARCH" in
+  x86_64)
+    ARCH_SUFFIX="x64"
+    ;;
+  aarch64|arm64)
+    ARCH_SUFFIX="arm64"
+    ;;
+  *)
+    echo "Unsupported architecture: $ARCH"
+    exit 1
+    ;;
+esac
 
-# Create a temporary directory
+URL="https://github.com/flowscripter/example-cli/releases/latest/download/example-cli_Linux_${ARCH_SUFFIX}.zip"
+
 TMP_DIR=$(mktemp -d)
 cd "$TMP_DIR"
 
-# Download and extract
 echo "Downloading example-cli..."
 curl -fsSL "$URL" -o executable.zip
 unzip executable.zip
 
-# Install
 chmod +x example-cli
 sudo mv example-cli /usr/local/bin/
 
-# Clean up
 cd -
 rm -rf "$TMP_DIR"
 
-echo "✅ Installation complete! Run 'example-cli' to get started."
+echo "Installation complete! Run 'example-cli' to get started."
