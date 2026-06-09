@@ -3,12 +3,12 @@ import { describe, expect, spyOn, test } from "bun:test";
 import { cli } from "../src/cli.ts";
 
 describe("ExampleCli Tests", () => {
-  test("CLI Test", () => {
+  test("CLI Test", async () => {
     const mockExit = spyOn(process, "exit").mockImplementation(() => {
       throw new Error("Mock exit");
     });
 
-    expect(cli()).rejects.toThrow("Mock exit");
+    await expect(cli()).rejects.toThrow("Mock exit");
 
     mockExit.mockRestore();
   });
