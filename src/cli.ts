@@ -6,7 +6,11 @@ import {
   SyntaxHighlighterServiceProvider,
   TreePrinterServiceProvider,
 } from "@flowscripter/dynamic-cli-framework";
-import { NpmPluginManager, NpmPluginRepository, NpmjsPluginRepository } from "@flowscripter/dynamic-plugin-framework";
+import {
+  NpmPluginManager,
+  NpmPluginRepository,
+  NpmjsPluginRepository,
+} from "@flowscripter/dynamic-plugin-framework";
 import demo from "./commands/demo.ts";
 import packageJson from "../package.json";
 import path from "node:path";
