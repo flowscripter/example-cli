@@ -19,7 +19,11 @@ const completion: SubCommand = {
     const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const completionService = context.getServiceById(COMPLETION_SERVICE_ID) as CompletionService;
 
-    const bootstrapScript = completionService.getBootstrapScript(ShellType.BASH, "example-cli", process.execPath);
+    const bootstrapScript = completionService.getBootstrapScript(
+      ShellType.BASH,
+      "example-cli",
+      process.execPath,
+    );
     await printerService.print(`Bash bootstrap script:\n${bootstrapScript}\n`);
 
     const configPath = completionService.getDefaultConfigPath(ShellType.BASH);
