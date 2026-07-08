@@ -25,6 +25,10 @@ Feature: Plugin management
     Then the executable should complete with exit code 0
     And the executable should have output "example-cli-plugin"
 
+  Scenario: Plugin dependencies are installed
+    Then the plugin node_modules directory should contain "cowsay"
+    And the plugin node_modules directory should contain "@flowscripter/dynamic-cli-framework"
+
   Scenario: Use hello command from installed plugin
     When the executable is launched with "hello"
     Then the executable should complete with exit code 0
@@ -42,3 +46,9 @@ Feature: Plugin management
   Scenario: Plugin no longer listed after removal
     When the executable is launched with "plugin:list"
     Then the executable should complete with exit code 0
+
+  Scenario: No orphaned transitive dependencies remain after removal
+    Then the plugin node_modules directory should not contain "@flowscripter/example-cli-plugin"
+    And the plugin node_modules directory should not contain "cowsay"
+    And the plugin node_modules directory should not contain "@flowscripter/template-bun-rust-library"
+    And the plugin node_modules directory should not contain "@flowscripter/dynamic-cli-framework"
