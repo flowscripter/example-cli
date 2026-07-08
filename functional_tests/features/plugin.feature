@@ -30,6 +30,12 @@ Feature: Plugin management
     Then the executable should complete with exit code 0
     And the executable should have output "Hello"
 
+  Scenario: Use hello_rust command from installed plugin
+    When the executable is launched with "hello_rust"
+    Then the executable should complete with exit code 0
+    And the executable should have output "Hello"
+    And the executable should have output "World"
+
   Scenario: Remove example-cli-plugin
     When the executable is launched with "plugin:remove @flowscripter/example-cli-plugin"
     Then the executable should complete with exit code 0
