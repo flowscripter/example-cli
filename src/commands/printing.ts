@@ -117,6 +117,10 @@ const printing: SubCommand = {
       printerService.backgroundColor("Custom Hex Background", "#FF6600") + "\n",
     );
 
+    // --- Italic ---
+    await printerService.print("--- Italic ---\n");
+    await printerService.print(printerService.italic("Italic text") + "\n");
+
     // --- Hyperlink ---
     await printerService.print("--- Hyperlink ---\n");
     await printerService.print(
