@@ -30,6 +30,10 @@ Feature: Executable
     And the executable should have output "Chisel Font ASCII Banner Demo"
     And the executable should have output "ASCII Banner Subtitle Demo"
 
+  Scenario: Image demo
+    When the executable is launched with "demo:image"
+    Then the executable should complete with exit code 0
+
   Scenario: Completion demo
     When the executable is launched with "demo:completion"
     Then the executable should complete with exit code 0

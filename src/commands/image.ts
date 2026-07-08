@@ -7,8 +7,7 @@ import {
   type PrinterService,
   type SubCommand,
 } from "@flowscripter/dynamic-cli-framework";
-import path from "node:path";
-import process from "node:process";
+import logoAsset from "../../assets/logo.png" with { type: "file" };
 
 const image: SubCommand = {
   name: "image",
@@ -21,13 +20,7 @@ const image: SubCommand = {
       IMAGE_PRINTER_SERVICE_ID,
     ) as ImagePrinterService;
 
-    const baseDir = path.dirname(process.execPath);
-    let imagePath = path.join(baseDir, "assets", "logo.png");
-    const logoFile = Bun.file(imagePath);
-    if (!(await logoFile.exists())) {
-      imagePath = path.join(import.meta.dir, "..", "..", "assets", "logo.png");
-    }
-    const imageBuffer = await Bun.file(imagePath).bytes();
+    const imageBuffer = await Bun.file(logoAsset).bytes();
     const imageOutput = await imagePrinterService.image(imageBuffer, 25, "#FFFFFF");
     await printerService.print(imageOutput + "\n");
   },
