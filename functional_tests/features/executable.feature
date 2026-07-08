@@ -30,6 +30,10 @@ Feature: Executable
     And the executable should have output "Chisel Font ASCII Banner Demo"
     And the executable should have output "ASCII Banner Subtitle Demo"
 
+  Scenario: Image demo
+    When the executable is launched with "demo:image"
+    Then the executable should complete with exit code 0
+
   Scenario: Completion demo
     When the executable is launched with "demo:completion"
     Then the executable should complete with exit code 0
@@ -40,3 +44,12 @@ Feature: Executable
     Then the executable should complete with exit code 0
     And the executable should have output "Key-Value Storage"
     And the executable should have output "Secret Storage"
+
+  Scenario: Completion stdout contains only completion values without banner
+    When bash completions are requested for "example-cli --h" at cursor 15
+    Then the stdout should contain "--help"
+    And the stdout should not contain "EXAMPLE-CLI"
+
+  Scenario: No completions after global command with trailing space
+    When bash completions are requested for "example-cli --help " at cursor 19
+    Then the stdout should be empty
