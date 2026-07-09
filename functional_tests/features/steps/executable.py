@@ -73,3 +73,17 @@ def step_impl(context, text):
 def step_impl(context):
     assert context.subprocess_wrapper.stdout.strip() == '', \
         'expected empty stdout but got {!r}'.format(context.subprocess_wrapper.stdout)
+
+
+@then('the installed plugin dependencies should not include "{packages}"')
+def step_impl(context, packages):
+    plugins_node_modules = os.path.expanduser('~/.example-cli/plugins/node_modules')
+    found = []
+    for package in packages.split(','):
+        package = package.strip()
+        for root, dirs, _ in os.walk(plugins_node_modules):
+            if package in dirs:
+                found.append(os.path.join(root, package))
+    assert not found, \
+        'expected none of the heavy framework dependencies to be installed alongside ' \
+        'the plugin, but found: {!r}'.format(found)
