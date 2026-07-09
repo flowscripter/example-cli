@@ -6,7 +6,7 @@
       "name": "@flowscripter/example-cli",
       "dependencies": {
         "@flowscripter/dynamic-cli-framework": "2.0.0",
-        "@flowscripter/dynamic-plugin-framework": "1.10.0",
+        "@flowscripter/dynamic-plugin-framework": "1.10.5",
       },
       "devDependencies": {
         "@types/bun": "^1.3.14",
@@ -24,7 +24,7 @@
 
     "@flowscripter/dynamic-cli-framework-api": ["@flowscripter/dynamic-cli-framework-api@1.0.1", "", { "peerDependencies": { "typescript": "^6.0.3" } }, "sha512-Ywi5y8NgFyrum5MbRKGSZ80T1XGOabdKZHzgYmtvLMhmPq9W+ZgbkPkysLxhl0E9YJtBJdvICtu1UT5/M+yTvA=="],
 
-    "@flowscripter/dynamic-plugin-framework": ["@flowscripter/dynamic-plugin-framework@1.10.0", "", { "dependencies": { "semver": "^7.8.5" }, "peerDependencies": { "typescript": "^6.0.3" } }, "sha512-WC0PKxQsk4KJSP/fstL2+Po5/2OB1hSgwM3HGLGwoHyH5qV7pNF/aZct6mDnLIi0aECVWM1sm7LXg75cb9FWLQ=="],
+    "@flowscripter/dynamic-plugin-framework": ["@flowscripter/dynamic-plugin-framework@1.10.5", "", { "dependencies": { "semver": "^7.8.5" }, "peerDependencies": { "typescript": "^6.0.3" } }, "sha512-KUk8yPh0euvIk9vaWgKGKvtVot2N/Ikw8nWGXan1tU0v3eVN2Oan3b/4TYxz8g+24WGg1jVX3UnE7K0DumIiag=="],
 
     "@oxfmt/binding-android-arm-eabi": ["@oxfmt/binding-android-arm-eabi@0.56.0", "", { "os": "android", "cpu": "arm" }, "sha512-CSCxi7ovYojgfdPOdUb9T508HKeAdDIKeRGg7x8IZwVJrWz9gVgX7MbUnFqtQAE4QvoNo07mj2JlwnOzJw4qqA=="],
 
