@@ -38,7 +38,7 @@ def step_impl(context, args):
 @when('bash completions are requested for "{line}" at cursor {cursor:d}')
 def step_impl(context, line, cursor):
     wrapper = SubprocessWrapper(os.environ.get('EXECUTABLE'))
-    wrapper.run('completions:complete bash "{}" {}'.format(line, cursor))
+    wrapper.run('completion:complete bash "{}" {}'.format(line, cursor))
     context.subprocess_wrapper = wrapper
 
 
