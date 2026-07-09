@@ -20,10 +20,17 @@ Feature: Plugin management
     And the stderr should contain "Searching for plugin: @flowscripter/example-cli-plugin\n"
     And the stderr should contain "Installing @flowscripter/example-cli-plugin...\n"
 
+  Scenario: Installing example-cli-plugin does not pull in the full dynamic-cli-framework
+    Then the installed plugin dependencies should not include "figlet, emphasize, highlight.js, prettier, supports-color, supports-terminal-graphics"
+
   Scenario: List installed plugins after install
     When the executable is launched with "plugin:list"
     Then the executable should complete with exit code 0
     And the executable should have output "example-cli-plugin"
+
+  Scenario: Plugin dependencies are installed
+    Then the plugin node_modules directory should contain "cowsay"
+    And the plugin node_modules directory should contain "@flowscripter/dynamic-cli-framework-api"
 
   Scenario: Use hello command from installed plugin
     When the executable is launched with "hello"
@@ -42,3 +49,9 @@ Feature: Plugin management
   Scenario: Plugin no longer listed after removal
     When the executable is launched with "plugin:list"
     Then the executable should complete with exit code 0
+
+  Scenario: No orphaned transitive dependencies remain after removal
+    Then the plugin node_modules directory should not contain "@flowscripter/example-cli-plugin"
+    And the plugin node_modules directory should not contain "cowsay"
+    And the plugin node_modules directory should not contain "@flowscripter/template-bun-rust-library"
+    And the plugin node_modules directory should not contain "@flowscripter/dynamic-cli-framework"
