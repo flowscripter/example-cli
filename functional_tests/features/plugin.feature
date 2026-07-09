@@ -30,7 +30,7 @@ Feature: Plugin management
 
   Scenario: Plugin dependencies are installed
     Then the plugin node_modules directory should contain "cowsay"
-    And the plugin node_modules directory should contain "@flowscripter/dynamic-cli-framework"
+    And the plugin node_modules directory should contain "@flowscripter/dynamic-cli-framework-api"
 
   Scenario: Use hello command from installed plugin
     When the executable is launched with "hello"
