@@ -35,6 +35,13 @@ def step_impl(context, args):
     context.subprocess_wrapper = wrapper
 
 
+@when('the executable stdout is captured for "{args}" with piped stdin')
+def step_impl(context, args):
+    wrapper = SubprocessWrapper(os.environ.get('EXECUTABLE'))
+    wrapper.run(args, stdin_text='')
+    context.subprocess_wrapper = wrapper
+
+
 @when('bash completions are requested for "{line}" at cursor {cursor:d}')
 def step_impl(context, line, cursor):
     wrapper = SubprocessWrapper(os.environ.get('EXECUTABLE'))
@@ -73,6 +80,20 @@ def step_impl(context, text):
 def step_impl(context):
     assert context.subprocess_wrapper.stdout.strip() == '', \
         'expected empty stdout but got {!r}'.format(context.subprocess_wrapper.stdout)
+
+
+@then('the stdout should not contain ANSI escape codes')
+def step_impl(context):
+    assert '\x1b[' not in context.subprocess_wrapper.stdout, \
+        'expected no ANSI escape codes in stdout but got {!r}'.format(
+            context.subprocess_wrapper.stdout)
+
+
+@then('the stderr should not contain ANSI escape codes')
+def step_impl(context):
+    assert '\x1b[' not in context.subprocess_wrapper.stderr, \
+        'expected no ANSI escape codes in stderr but got {!r}'.format(
+            context.subprocess_wrapper.stderr)
 
 
 @then('the installed plugin dependencies should not include "{packages}"')
