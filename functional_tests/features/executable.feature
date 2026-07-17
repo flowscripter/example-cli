@@ -1,5 +1,6 @@
 Feature: Executable
 
+  @requires_tty
   Scenario: No command specified
     When the executable is launched
     Then the executable should complete with exit code 2
@@ -30,6 +31,7 @@ Feature: Executable
     And the executable should have output "Chisel Font ASCII Banner Demo"
     And the executable should have output "ASCII Banner Subtitle Demo"
 
+  @requires_tty
   Scenario: Image demo
     When the executable is launched with "demo:image"
     Then the executable should complete with exit code 0
