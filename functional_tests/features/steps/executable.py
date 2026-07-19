@@ -35,6 +35,13 @@ def step_impl(context, args):
     context.subprocess_wrapper = wrapper
 
 
+@when('the executable stdout is captured for "{args}" with timeout {timeout:d}s')
+def step_impl(context, args, timeout):
+    wrapper = SubprocessWrapper(os.environ.get('EXECUTABLE'))
+    wrapper.run(args, timeout=timeout)
+    context.subprocess_wrapper = wrapper
+
+
 @when('the executable stdout is captured for "{args}" with piped stdin')
 def step_impl(context, args):
     wrapper = SubprocessWrapper(os.environ.get('EXECUTABLE'))

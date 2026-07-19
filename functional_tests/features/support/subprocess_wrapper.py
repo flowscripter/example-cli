@@ -13,11 +13,11 @@ class SubprocessWrapper:
         self.stderr = None
         self.returncode = None
 
-    def run(self, args='', stdin_text=None):
+    def run(self, args='', stdin_text=None, timeout=30):
         cmd = [self.executable] + (shlex.split(args) if args else [])
         log.debug('running: {}'.format(cmd))
         result = subprocess.run(
-            cmd, capture_output=True, text=True, timeout=30, input=stdin_text,
+            cmd, capture_output=True, text=True, timeout=timeout, input=stdin_text,
             encoding='utf-8', errors='replace'
         )
         self.stdout = result.stdout

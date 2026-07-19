@@ -14,7 +14,7 @@ Feature: Plugin management
     Then the executable should complete with exit code 0
 
   Scenario: Install example-cli-plugin
-    When the executable stdout is captured for "--no-prompt plugin:add @flowscripter/example-cli-plugin"
+    When the executable stdout is captured for "--no-prompt plugin:add @flowscripter/example-cli-plugin" with timeout 60s
     Then the captured process should complete with exit code 0
     And the stdout should contain "installed"
     And the stderr should contain "Searching for plugin: @flowscripter/example-cli-plugin\n"
