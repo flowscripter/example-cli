@@ -49,6 +49,7 @@ export async function cli(): Promise<void> {
       argumentPrompterServiceEnabled: true,
       completionServiceEnabled: true,
       imagePrinterServiceEnabled: true,
+      spawnServiceEnabled: true,
     },
   );
 }
