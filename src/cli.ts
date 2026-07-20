@@ -6,6 +6,7 @@ import {
   SyntaxHighlighterServiceProvider,
   TreePrinterServiceProvider,
 } from "@flowscripter/dynamic-cli-framework";
+import { SupportedArch, SupportedOs } from "@flowscripter/dynamic-cli-framework-api";
 import {
   NpmPluginManager,
   NpmPluginRepository,
@@ -50,6 +51,32 @@ export async function cli(): Promise<void> {
       completionServiceEnabled: true,
       imagePrinterServiceEnabled: true,
       spawnServiceEnabled: true,
+      upgradeServiceEnabled: true,
+      upgradeLocationsConfig: {
+        supportedPlatforms: [
+          { os: SupportedOs.LINUX, arch: SupportedArch.X64 },
+          { os: SupportedOs.LINUX, arch: SupportedArch.ARM64 },
+          { os: SupportedOs.MACOS, arch: SupportedArch.X64 },
+          { os: SupportedOs.MACOS, arch: SupportedArch.ARM64 },
+          { os: SupportedOs.WINDOWS, arch: SupportedArch.X64 },
+        ],
+        githubRelease: {
+          owner: "flowscripter",
+          repo: "example-cli",
+          assetPattern: "example-cli_{os}_{arch}.zip",
+        },
+        linuxScript: {
+          scriptUrl:
+            "https://raw.githubusercontent.com/flowscripter/example-cli/main/script/install.sh",
+        },
+        homebrew: {
+          tap: "flowscripter/tap",
+          formula: "example-cli",
+        },
+        winget: {
+          packageId: "Flowscripter.example-cli",
+        },
+      },
     },
   );
 }
