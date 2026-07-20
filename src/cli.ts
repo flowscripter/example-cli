@@ -51,7 +51,7 @@ export async function cli(): Promise<void> {
       completionServiceEnabled: true,
       imagePrinterServiceEnabled: true,
       spawnServiceEnabled: true,
-      upgradeServiceEnabled: true,
+      upgradeServiceEnabled: false,
       upgradeLocationsConfig: {
         supportedPlatforms: [
           { os: SupportedOs.LINUX, arch: SupportedArch.X64 },
