@@ -1,6 +1,6 @@
 import {
-  type ArgumentValues,
-  ArgumentValueTypeName,
+  type Values,
+  ValueTypeName,
   type Context,
   PRINTER_SERVICE_ID,
   type PrinterService,
@@ -19,7 +19,7 @@ const prompting: SubCommand = {
     {
       name: "age",
       description: "Your age",
-      type: ArgumentValueTypeName.NUMBER,
+      type: ValueTypeName.NUMBER,
       shortAlias: "a",
       isOptional: true,
       validate: (value): string | undefined => {
@@ -35,7 +35,7 @@ const prompting: SubCommand = {
     {
       name: "name",
       description: "Your name (must be at least 2 characters)",
-      type: ArgumentValueTypeName.STRING,
+      type: ValueTypeName.STRING,
       validate: (value): string | undefined => {
         const str = value as string;
         if (str.length < 2) {
@@ -45,7 +45,7 @@ const prompting: SubCommand = {
       },
     },
   ],
-  async execute(context: Context, argumentValues: ArgumentValues): Promise<void> {
+  async execute(context: Context, argumentValues: Values): Promise<void> {
     const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const prompterService = context.getServiceById(PROMPTER_SERVICE_ID) as PrompterService;
 

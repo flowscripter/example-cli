@@ -1,5 +1,5 @@
 import {
-  type ArgumentValues,
+  type Values,
   ASCII_BANNER_GENERATOR_SERVICE_ID,
   type AsciiBannerGeneratorService,
   ChiselFontAsciiBannerGeneratorService,
@@ -14,7 +14,7 @@ const banners: SubCommand = {
   description: "Demonstrates chisel font ASCII banner and ASCII banner subtitle",
   options: [],
   positionals: [],
-  execute: async (context: Context, _argumentValues: ArgumentValues): Promise<void> => {
+  execute: async (context: Context, _argumentValues: Values): Promise<void> => {
     const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const asciiBannerService = context.getServiceById(
       ASCII_BANNER_GENERATOR_SERVICE_ID,
