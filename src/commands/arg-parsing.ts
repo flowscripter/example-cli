@@ -1,6 +1,6 @@
 import {
-  type ArgumentValues,
-  ArgumentValueTypeName,
+  type Values,
+  ValueTypeName,
   ComplexValueTypeName,
   type Context,
   PRINTER_SERVICE_ID,
@@ -17,21 +17,21 @@ const argParsing: SubCommand = {
     {
       name: "booleanOption",
       description: "A boolean option",
-      type: ArgumentValueTypeName.BOOLEAN,
+      type: ValueTypeName.BOOLEAN,
       shortAlias: "b",
       isOptional: true,
     },
     {
       name: "numberOption",
       description: "A number option",
-      type: ArgumentValueTypeName.NUMBER,
+      type: ValueTypeName.NUMBER,
       shortAlias: "n",
       isOptional: true,
     },
     {
       name: "stringOption",
       description: "A string option",
-      type: ArgumentValueTypeName.STRING,
+      type: ValueTypeName.STRING,
       shortAlias: "s",
       isOptional: true,
     },
@@ -45,7 +45,7 @@ const argParsing: SubCommand = {
         {
           name: "numberSubOption",
           description: "A number sub-option",
-          type: ArgumentValueTypeName.NUMBER,
+          type: ValueTypeName.NUMBER,
           shortAlias: "n",
           isArray: true,
         },
@@ -56,17 +56,17 @@ const argParsing: SubCommand = {
     {
       name: "booleanPositional",
       description: "A boolean positional",
-      type: ArgumentValueTypeName.BOOLEAN,
+      type: ValueTypeName.BOOLEAN,
     },
     {
       name: "numberPositional",
       description: "A number positional",
-      type: ArgumentValueTypeName.NUMBER,
+      type: ValueTypeName.NUMBER,
     },
     {
       name: "stringPositional",
       description: "A string positional",
-      type: ArgumentValueTypeName.STRING,
+      type: ValueTypeName.STRING,
     },
   ],
   usageExamples: [
@@ -114,7 +114,7 @@ const argParsing: SubCommand = {
       ],
     },
   ],
-  async execute(context: Context, argumentValues: ArgumentValues): Promise<void> {
+  async execute(context: Context, argumentValues: Values): Promise<void> {
     const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const highlighterService = context.getServiceById(
       SYNTAX_HIGHLIGHTER_SERVICE_ID,

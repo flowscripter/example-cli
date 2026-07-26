@@ -1,5 +1,5 @@
 import {
-  type ArgumentValues,
+  type Values,
   type Context,
   KEY_VALUE_SERVICE_ID,
   type KeyValueService,
@@ -13,7 +13,7 @@ const configuration: SubCommand = {
   description: "Demonstrates secrets storage and key-value service",
   options: [],
   positionals: [],
-  async execute(context: Context, _argumentValues: ArgumentValues): Promise<void> {
+  async execute(context: Context, _argumentValues: Values): Promise<void> {
     const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const keyValueService = context.getServiceById(KEY_VALUE_SERVICE_ID) as KeyValueService;
 

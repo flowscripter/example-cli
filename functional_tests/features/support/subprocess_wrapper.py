@@ -23,6 +23,3 @@ class SubprocessWrapper:
         self.stdout = result.stdout
         self.stderr = result.stderr
         self.returncode = result.returncode
-        log.debug('stdout: {!r}'.format(self.stdout))
-        log.debug('stderr: {!r}'.format(self.stderr))
-        log.debug('returncode: {}'.format(self.returncode))

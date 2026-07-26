@@ -1,6 +1,6 @@
 import {
   Align,
-  type ArgumentValues,
+  type Values,
   ASCII_BANNER_GENERATOR_SERVICE_ID,
   type AsciiBannerGeneratorService,
   type Context,
@@ -31,7 +31,7 @@ const printing: SubCommand = {
   description: "Demonstrates printer, tree, table, data dump, and banner output features",
   options: [],
   positionals: [],
-  execute: async (context: Context, _argumentValues: ArgumentValues): Promise<void> => {
+  execute: async (context: Context, _argumentValues: Values): Promise<void> => {
     const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const asciiBannerGenerator = context.getServiceById(
       ASCII_BANNER_GENERATOR_SERVICE_ID,
