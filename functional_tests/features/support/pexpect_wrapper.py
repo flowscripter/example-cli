@@ -40,8 +40,6 @@ class PExpectWrapper:
                 found = next_line
                 break
 
-        # TEMPORARY: surface the full captured output on failure to diagnose an
-        # intermittent macOS "upgrade already up to date" assertion failure.
         assert found != '', 'expected "{}" in output, got: {!r}'.format(message, remaining)
 
     def expect_eof(self):
