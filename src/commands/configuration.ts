@@ -7,6 +7,7 @@ import {
   type PrinterService,
   type SubCommand,
 } from "@flowscripter/dynamic-cli-framework";
+import { Secret } from "@flowscripter/dynamic-cli-framework-api";
 
 const configuration: SubCommand = {
   name: "configuration",
@@ -20,21 +21,21 @@ const configuration: SubCommand = {
     // --- Key-Value Storage ---
     await printerService.print("--- Key-Value Storage ---\n");
 
-    await keyValueService.setKey("demo-string", "hello world");
-    await keyValueService.setKey("demo-number", "42");
-    await keyValueService.setKey("demo-json", '{"enabled":true,"retries":3}');
+    await keyValueService.set("demo-string", "hello world");
+    await keyValueService.set("demo-number", "42");
+    await keyValueService.set("demo-json", '{"enabled":true,"retries":3}');
 
     const keys = ["demo-string", "demo-number", "demo-json"];
     for (const key of keys) {
-      const value = await keyValueService.getKey(key);
+      const value = await keyValueService.get(key);
       await printerService.print(`  ${key} = ${value}\n`);
     }
 
-    const missing = await keyValueService.hasKey("demo-nonexistent");
+    const missing = await keyValueService.has("demo-nonexistent");
     await printerService.print(`  demo-nonexistent exists: ${missing}\n`);
 
     for (const key of keys) {
-      await keyValueService.deleteKey(key);
+      await keyValueService.delete(key);
     }
     await printerService.print("Cleaned up keys\n");
 
@@ -42,17 +43,17 @@ const configuration: SubCommand = {
     await printerService.print("--- Secret Storage ---\n");
 
     try {
-      await keyValueService.setKey("demo-api-key", "sk-secret-12345", true);
+      await keyValueService.set("demo-api-key", new Secret("sk-secret-12345"));
       await printerService.print("Stored secret: demo-api-key\n");
 
-      const exists = await keyValueService.hasKey("demo-api-key");
+      const exists = await keyValueService.has("demo-api-key");
       await printerService.print(`Key exists: ${exists}\n`);
 
-      const secret = await keyValueService.getKey("demo-api-key");
+      const secret = await keyValueService.get<string>("demo-api-key");
       const masked = secret.substring(0, 3) + "***";
       await printerService.print(`Retrieved secret (masked): ${masked}\n`);
 
-      await keyValueService.deleteKey("demo-api-key");
+      await keyValueService.delete("demo-api-key");
       await printerService.print("Deleted secret: demo-api-key\n");
     } catch (error) {
       await printerService.warn(
