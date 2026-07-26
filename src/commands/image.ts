@@ -1,5 +1,5 @@
 import {
-  type ArgumentValues,
+  type Values,
   type Context,
   IMAGE_PRINTER_SERVICE_ID,
   type ImagePrinterService,
@@ -14,7 +14,7 @@ const image: SubCommand = {
   description: "Demonstrates image rendering in the terminal",
   options: [],
   positionals: [],
-  execute: async (context: Context, _argumentValues: ArgumentValues): Promise<void> => {
+  execute: async (context: Context, _argumentValues: Values): Promise<void> => {
     const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const imagePrinterService = context.getServiceById(
       IMAGE_PRINTER_SERVICE_ID,

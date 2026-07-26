@@ -1,6 +1,6 @@
 import process from "node:process";
 import {
-  type ArgumentValues,
+  type Values,
   COMPLETION_SERVICE_ID,
   type CompletionService,
   type Context,
@@ -15,7 +15,7 @@ const completion: SubCommand = {
   description: "Demonstrates shell completion service",
   options: [],
   positionals: [],
-  execute: async (context: Context, _argumentValues: ArgumentValues): Promise<void> => {
+  execute: async (context: Context, _argumentValues: Values): Promise<void> => {
     const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const completionService = context.getServiceById(COMPLETION_SERVICE_ID) as CompletionService;
 

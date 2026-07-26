@@ -31,6 +31,7 @@ class PExpectWrapper:
     def expect(self, message):
         assert self.child is not None
 
+        remaining = list(self.output)
         found = ''
         while len(self.output) > 0:
             next_line = self.output.pop(0)
@@ -39,7 +40,7 @@ class PExpectWrapper:
                 found = next_line
                 break
 
-        assert found != '', 'expected {} in output'.format(message)
+        assert found != '', 'expected "{}" in output, got: {!r}'.format(message, remaining)
 
     def expect_eof(self):
         assert self.child is not None

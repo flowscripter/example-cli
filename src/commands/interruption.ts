@@ -1,5 +1,5 @@
 import {
-  type ArgumentValues,
+  type Values,
   type Context,
   Icon,
   PRINTER_SERVICE_ID,
@@ -18,7 +18,7 @@ const interruption: SubCommand = {
   description: "Demonstrates graceful shutdown with signal handling (press Ctrl+C to interrupt)",
   options: [],
   positionals: [],
-  execute: async (context: Context, _argumentValues: ArgumentValues): Promise<void> => {
+  execute: async (context: Context, _argumentValues: Values): Promise<void> => {
     const printerService = context.getServiceById(PRINTER_SERVICE_ID) as PrinterService;
     const shutdownService = context.getServiceById(SHUTDOWN_SERVICE_ID) as ShutdownService;
 
