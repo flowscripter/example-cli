@@ -3,7 +3,7 @@ import os
 from behave import then
 
 PLUGINS_NODE_MODULES = os.path.expanduser(
-    os.path.join('~', '.example-cli', 'plugins', 'node_modules')
+    os.path.join('~', '.examplecli', 'plugins', 'node_modules')
 )
 
 

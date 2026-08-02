@@ -2,7 +2,7 @@ Feature: Plugin management
 
   Note: These scenarios require @flowscripter/example-cli-plugin to be
   published on npmjs.com and the test machine to have network access.
-  The plugin install folder is ~/.example-cli/plugins.
+  The plugin install folder is ~/.examplecli/plugins.
 
   Scenario: Search for example-cli-plugin on npmjs
     When the executable is launched with "plugin:search example-cli-plugin"

@@ -13,7 +13,7 @@ import path from "node:path";
 import os from "node:os";
 
 export async function cli(): Promise<void> {
-  const pluginsDir = path.join(os.homedir(), ".example-cli", "plugins", "node_modules");
+  const pluginsDir = path.join(os.homedir(), ".examplecli", "plugins", "node_modules");
 
   await launchMultiCommandCLI(
     [demo],

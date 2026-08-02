@@ -105,7 +105,7 @@ def step_impl(context):
 
 @then('the installed plugin dependencies should not include "{packages}"')
 def step_impl(context, packages):
-    plugins_node_modules = os.path.expanduser('~/.example-cli/plugins/node_modules')
+    plugins_node_modules = os.path.expanduser('~/.examplecli/plugins/node_modules')
     found = []
     for package in packages.split(','):
         package = package.strip()
