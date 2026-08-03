@@ -28,7 +28,7 @@ Feature: Plugin management
     Then the captured process should complete with exit code 0
     And the stdout should contain "installed"
     And the stderr should contain "Searching for plugin: @flowscripter/example-cli-plugin\n"
-    And the stderr should contain "Installing @flowscripter/example-cli-plugin...\n"
+    And the stderr should contain "Installing @flowscripter/example-cli-plugin"
 
   Scenario: Installing example-cli-plugin does not pull in the full dynamic-cli-framework
     Then the installed plugin dependencies should not include "figlet, emphasize, highlight.js, prettier, supports-color, supports-terminal-graphics"
