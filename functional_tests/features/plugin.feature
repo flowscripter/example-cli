@@ -13,6 +13,16 @@ Feature: Plugin management
     When the executable is launched with "plugin:list"
     Then the executable should complete with exit code 0
 
+  Scenario: Attempt to add a plugin that does not exist in the registry
+    When the executable stdout is captured for "--no-prompt plugin:add @flowscripter/example-cli-plugin-does-not-exist-xyz" with timeout 60s
+    Then the captured process should complete with exit code 3
+    And the stderr should contain "Plugin @flowscripter/example-cli-plugin-does-not-exist-xyz was not found in the configured plugin registry"
+
+  Scenario: Attempt to add a non-existent version of an existing plugin
+    When the executable stdout is captured for "--no-prompt plugin:add @flowscripter/example-cli-plugin:0.0.0-does-not-exist" with timeout 60s
+    Then the captured process should complete with exit code 3
+    And the stderr should contain "Version 0.0.0-does-not-exist of plugin @flowscripter/example-cli-plugin was not found in the configured plugin registry"
+
   Scenario: Install example-cli-plugin
     When the executable stdout is captured for "--no-prompt plugin:add @flowscripter/example-cli-plugin" with timeout 60s
     Then the captured process should complete with exit code 0
