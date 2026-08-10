@@ -5,9 +5,9 @@
     "": {
       "name": "@flowscripter/example-cli",
       "dependencies": {
-        "@flowscripter/dynamic-cli-framework": "5.2.1",
+        "@flowscripter/dynamic-cli-framework": "5.3.0",
         "@flowscripter/dynamic-cli-framework-api": "^2.3.0",
-        "@flowscripter/dynamic-plugin-framework": "2.2.2",
+        "@flowscripter/dynamic-plugin-framework": "2.2.3",
       },
       "devDependencies": {
         "@types/bun": "^1.3.14",
@@ -21,11 +21,11 @@
     },
   },
   "packages": {
-    "@flowscripter/dynamic-cli-framework": ["@flowscripter/dynamic-cli-framework@5.2.1", "", { "dependencies": { "@flowscripter/dynamic-cli-framework-api": "^2.3.0", "@flowscripter/dynamic-plugin-framework": "^2.2.3", "emphasize": "^7.0.0", "fastest-levenshtein": "^1.0.16", "figlet": "^1.11.0", "highlight.js": "^11.11.1", "prettier": "^3.9.4", "semver": "^7.7.3", "supports-color": "^10.2.2", "supports-terminal-graphics": "^0.1.0" }, "peerDependencies": { "typescript": "^6.0.3" } }, "sha512-Pv0JMGu17Ze5AKXNMCA0bq247//KxOhQU7iCZ/22ko4Un1tpDVkeCGKWccJOLoaPh4NM1C+yAjoY3tcZnCJWdA=="],
+    "@flowscripter/dynamic-cli-framework": ["@flowscripter/dynamic-cli-framework@5.3.0", "", { "dependencies": { "@flowscripter/dynamic-cli-framework-api": "^2.3.0", "@flowscripter/dynamic-plugin-framework": "^2.2.3", "emphasize": "^7.0.0", "fastest-levenshtein": "^1.0.16", "figlet": "^1.11.0", "highlight.js": "^11.11.1", "prettier": "^3.9.4", "semver": "^7.7.3", "supports-color": "^10.2.2", "supports-terminal-graphics": "^0.1.0" }, "peerDependencies": { "typescript": "^6.0.3" } }, "sha512-3zdfIKs4jLTklOGmgp9iwHoF5E8eT8/AD3Wcme/QjAIR5L+5HQ1oGMOnYrVri/E4JUcpmXZJ3RIgTr8Ak6fwjQ=="],
 
     "@flowscripter/dynamic-cli-framework-api": ["@flowscripter/dynamic-cli-framework-api@2.3.0", "", { "peerDependencies": { "typescript": "^7.0.2" } }, "sha512-L9seTKhhg08RcxSSCZOtDZKWYpHPyMQ2B3PqViqY9iFWitctsZqHjmFi636CEknM1CsXnzdNgSGsusg+pmDRJQ=="],
 
-    "@flowscripter/dynamic-plugin-framework": ["@flowscripter/dynamic-plugin-framework@2.2.2", "", { "dependencies": { "semver": "^7.8.5" }, "peerDependencies": { "typescript": "^7.0.2" } }, "sha512-S/YbHmfu3anV23jrAm+LefvnjLscyXvIpDwwyPjKJOpk8mcofedVMAYkF6JbZkeYNC7+i0Zvu3Zn/k0Wk5wNjQ=="],
+    "@flowscripter/dynamic-plugin-framework": ["@flowscripter/dynamic-plugin-framework@2.2.3", "", { "dependencies": { "semver": "^7.8.5" }, "peerDependencies": { "typescript": "^7.0.2" } }, "sha512-vLoGC2LktUVPWqA66CwSzZtjh09zSR2HTuLa8OMGDumePkgZD0UTE9D2jWsd3bFdqcy14eQf3IYRdDM47+wRKg=="],
 
     "@oxfmt/binding-android-arm-eabi": ["@oxfmt/binding-android-arm-eabi@0.56.0", "", { "os": "android", "cpu": "arm" }, "sha512-CSCxi7ovYojgfdPOdUb9T508HKeAdDIKeRGg7x8IZwVJrWz9gVgX7MbUnFqtQAE4QvoNo07mj2JlwnOzJw4qqA=="],
 
@@ -148,8 +148,6 @@
     "typescript": ["typescript@6.0.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw=="],
 
     "undici-types": ["undici-types@8.3.0", "", {}, "sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ=="],
-
-    "@flowscripter/dynamic-cli-framework/@flowscripter/dynamic-plugin-framework": ["@flowscripter/dynamic-plugin-framework@2.2.3", "", { "dependencies": { "semver": "^7.8.5" }, "peerDependencies": { "typescript": "^7.0.2" } }, "sha512-vLoGC2LktUVPWqA66CwSzZtjh09zSR2HTuLa8OMGDumePkgZD0UTE9D2jWsd3bFdqcy14eQf3IYRdDM47+wRKg=="],
 
     "emphasize/highlight.js": ["highlight.js@11.9.0", "", {}, "sha512-fJ7cW7fQGCYAkgv4CPfwFHrfd/cLS4Hau96JuJ+ZTOWhjnhoeN1ub1tFmALm/+lW5z4WCAuAV9bm05AP0mS6Gw=="],
 
