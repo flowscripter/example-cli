@@ -1,27 +1,68 @@
 import platform
 import shlex
 import subprocess
+import threading
+import time
 import logging
 
 log = logging.getLogger("subprocess_wrapper")
 
 
-def _dump_process_tree():
-    # TEMPORARY: diagnosing an intermittent Windows-only hang in `plugin:add`. Dumps the OS
-    # process list on timeout so we can see whether a child npm/node process is stuck vs. our
-    # own process. Remove once root-caused.
+def _process_snapshot():
+    # TEMPORARY: diagnosing an intermittent Windows-only hang in `plugin:add`. `tasklist` alone
+    # doesn't show parent/child relationships or full command lines, so a renamed or wrapped
+    # process (e.g. a `cmd.exe /c bun.exe ...` shell hop) can't be distinguished from a process
+    # that never launched at all. Use PowerShell's Get-CimInstance for that detail on Windows.
     try:
         if platform.system() == 'Windows':
+            ps_cmd = (
+                "Get-CimInstance Win32_Process | "
+                "Select-Object ProcessId,ParentProcessId,Name,CommandLine | "
+                "Format-Table -AutoSize -Wrap | Out-String -Width 300"
+            )
             out = subprocess.run(
-                ['tasklist', '/v'], capture_output=True, text=True, timeout=10
+                ['powershell', '-NoProfile', '-Command', ps_cmd],
+                capture_output=True, text=True, timeout=10
             ).stdout
         else:
             out = subprocess.run(
                 ['ps', '-ef'], capture_output=True, text=True, timeout=10
             ).stdout
-        print('DEBUG: process list at timeout:\n{}'.format(out), flush=True)
+        return out
     except Exception as e:
-        print('DEBUG: failed to dump process list: {}'.format(e), flush=True)
+        return 'failed to snapshot process list: {}'.format(e)
+
+
+class _ProcessTreeMonitor:
+    # TEMPORARY: diagnosing an intermittent Windows-only hang in `plugin:add`. Polls the process
+    # tree every few seconds while a subprocess is running (rather than only once at timeout) so
+    # we can see whether the child process ever appears, and if so, whether it appears and then
+    # disappears before the outer timeout fires. Remove once root-caused.
+    def __init__(self, interval_seconds=5):
+        self.interval_seconds = interval_seconds
+        self._stop_event = threading.Event()
+        self._thread = None
+        self._start_time = None
+
+    def _run(self):
+        while not self._stop_event.wait(self.interval_seconds):
+            elapsed = time.monotonic() - self._start_time
+            snapshot = _process_snapshot()
+            print(
+                'DEBUG: process snapshot at +{:.1f}s:\n{}'.format(elapsed, snapshot),
+                flush=True,
+            )
+
+    def __enter__(self):
+        self._start_time = time.monotonic()
+        self._thread = threading.Thread(target=self._run, daemon=True)
+        self._thread.start()
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self._stop_event.set()
+        if self._thread is not None:
+            self._thread.join(timeout=self.interval_seconds + 5)
 
 
 class SubprocessWrapper:
@@ -39,15 +80,19 @@ class SubprocessWrapper:
         # hang in `plugin:add`. Remove once root-caused.
         print('DEBUG: running: {}'.format(cmd), flush=True)
         try:
-            result = subprocess.run(
-                cmd, capture_output=True, text=True, timeout=timeout, input=stdin_text,
-                encoding='utf-8', errors='replace'
-            )
+            with _ProcessTreeMonitor(interval_seconds=5):
+                result = subprocess.run(
+                    cmd, capture_output=True, text=True, timeout=timeout, input=stdin_text,
+                    encoding='utf-8', errors='replace'
+                )
         except subprocess.TimeoutExpired as e:
             print('DEBUG: TIMED OUT after {}s'.format(timeout), flush=True)
             print('DEBUG: partial stdout: {!r}'.format(e.stdout), flush=True)
             print('DEBUG: partial stderr: {!r}'.format(e.stderr), flush=True)
-            _dump_process_tree()
+            print(
+                'DEBUG: final process snapshot at timeout:\n{}'.format(_process_snapshot()),
+                flush=True,
+            )
             raise
         self.stdout = result.stdout
         self.stderr = result.stderr
