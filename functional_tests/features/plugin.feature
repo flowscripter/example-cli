@@ -24,11 +24,13 @@ Feature: Plugin management
     And the stderr should contain "Version 0.0.0-does-not-exist of plugin @flowscripter/example-cli-plugin was not found in the configured plugin registry"
 
   Scenario: Install example-cli-plugin
+    # dynamic-cli-framework 5.4.0+ shows "Searching for plugin: ..."/"Installing ..." via a
+    # spinner (PrinterService.showSpinner()), which is a documented no-op when stderr is not a
+    # TTY - so this non-interactive capture won't see that text in stderr. Only the final result
+    # message (printed via print(), not the spinner) is checked here.
     When the executable stdout is captured for "--no-prompt plugin:add @flowscripter/example-cli-plugin" with timeout 60s
     Then the captured process should complete with exit code 0
     And the stdout should contain "installed"
-    And the stderr should contain "Searching for plugin: @flowscripter/example-cli-plugin\n"
-    And the stderr should contain "Installing @flowscripter/example-cli-plugin"
 
   Scenario: Installing example-cli-plugin does not pull in the full dynamic-cli-framework
     Then the installed plugin dependencies should not include "figlet, emphasize, highlight.js, prettier, supports-color, supports-terminal-graphics"
