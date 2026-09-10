@@ -54,6 +54,7 @@ export async function cli(): Promise<void> {
           { os: SupportedOs.MACOS, arch: SupportedArch.X64 },
           { os: SupportedOs.MACOS, arch: SupportedArch.ARM64 },
           { os: SupportedOs.WINDOWS, arch: SupportedArch.X64 },
+          { os: SupportedOs.WINDOWS, arch: SupportedArch.ARM64 },
         ],
         githubRelease: {
           owner: "flowscripter",
