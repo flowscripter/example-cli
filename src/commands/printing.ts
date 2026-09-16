@@ -68,7 +68,12 @@ const printing: SubCommand = {
 
     await sleep(0.5);
 
-    const handle1 = await printerService.showProgressBar("sec", "Waiting 3 seconds", 3, 0);
+    const handle1 = await printerService.showProgressBar({
+      message: "Waiting 3 seconds",
+      total: 3,
+      current: 0,
+      format: (value) => `${value}sec`,
+    });
     await sleep(1);
     printerService.updateProgressBar(handle1, 1);
     await sleep(1);
@@ -91,13 +96,13 @@ const printing: SubCommand = {
 
     await sleep(0.5);
 
-    const handle2 = await printerService.showProgressBar(
-      "sec",
-      "Waiting 3 seconds",
-      3,
-      0,
-      ProgressStyle.FILL,
-    );
+    const handle2 = await printerService.showProgressBar({
+      message: "Waiting 3 seconds",
+      total: 3,
+      current: 0,
+      style: ProgressStyle.FILL,
+      format: (value) => `${value}sec`,
+    });
     await sleep(1);
     printerService.updateProgressBar(handle2, 1);
     await sleep(1);
