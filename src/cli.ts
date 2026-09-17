@@ -21,7 +21,6 @@ export async function cli(): Promise<void> {
     "example-cli",
     packageJson.version,
     [
-      createBannerStartupTask(50),
       new AsciiBannerGeneratorServiceProvider(45),
       new SyntaxHighlighterServiceProvider(40),
       new TreePrinterServiceProvider(35),
@@ -74,5 +73,6 @@ export async function cli(): Promise<void> {
         },
       },
     },
+    [createBannerStartupTask(50)],
   );
 }
