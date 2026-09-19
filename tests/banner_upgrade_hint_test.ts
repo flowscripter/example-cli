@@ -1,9 +1,9 @@
 import { describe, expect, test } from "bun:test";
-import { BannerServiceProvider } from "@flowscripter/dynamic-cli-framework";
+import { createBannerStartupTask } from "@flowscripter/dynamic-cli-framework";
 import {
   ASCII_BANNER_GENERATOR_SERVICE_ID,
+  KEY_VALUE_SERVICE_ID,
   PRINTER_SERVICE_ID,
-  UPGRADE_SERVICE_ID,
 } from "@flowscripter/dynamic-cli-framework-api";
 import type { Context } from "@flowscripter/dynamic-cli-framework-api";
 
@@ -11,21 +11,21 @@ import type { Context } from "@flowscripter/dynamic-cli-framework-api";
 // upgrade-availability hint "(X.Y.Z available, run 'app upgrade')" on the SAME line as
 // "version: X.Y.Z", rather than as a separate line (the pre-fix behaviour).
 //
-// This drives the real, installed BannerServiceProvider@5.0.6 - the exact class example-cli's
-// src/cli.ts instantiates (`new BannerServiceProvider(50)`) - with a stub UpgradeService that
-// reports an upgrade as available.
+// This drives the real, installed banner StartupTask (from createBannerStartupTask(50), the
+// factory example-cli's src/cli.ts now calls following the dynamic-cli-framework
+// service-lifecycle redesign) with a stub KeyValueService reporting a cached "upgrade available"
+// result.
 //
-// Why not a full black-box run of the built executable (as the #142 test below does)? Because in
-// the real running CLI, BannerServiceProvider's configured priority (50) initialises before the
-// framework's built-in UpgradeServiceProvider (priority 6, see BaseCLI.ts) has called
-// setDependencies() on the upgrade service - services initialise in descending-priority order
-// (DefaultServiceProviderRegistry.getServiceProviders()). So the banner's *opportunistic* upgrade
-// check on a freshly spawned process always observes a not-yet-wired FetchService and resolves to
-// a "failed" check, regardless of network speed or mocking - confirmed by direct reproduction
-// against both `bun run` and a `--compile`d binary. That is a pre-existing framework behaviour
-// unrelated to the #141 formatting fix itself, so an external black-box test can't reliably
-// observe the hint. Driving BannerServiceProvider directly (as done here) isolates and verifies
-// the actual formatting fix.
+// Following that redesign, the banner no longer calls a live UpgradeService at all - it does a
+// cheap KeyValueService read of the previous run's cached upgrade-check result (see
+// dynamic-cli-framework's bannerStartupTask.ts / UPGRADE_CHECK_CACHE_KEY - an internal cache key,
+// not part of the public API surface, hardcoded below as "upgrade-check-result"; if the
+// framework's internal key ever changes this test needs updating to match). This also removes the
+// original #141 test's race entirely - the opportunistic upgrade check used to run concurrently
+// with, and often lose to, the banner's own priority band - so there's no longer a reason this
+// couldn't also be exercised as a full black-box run; kept as a direct unit test here for speed
+// and because it isolates the formatting fix precisely.
+const UPGRADE_CHECK_CACHE_KEY = "upgrade-check-result";
 
 function createStubPrinterService(lines: string[]) {
   const identity = (message: string) => message;
@@ -48,26 +48,30 @@ function createStubAsciiBannerGeneratorService() {
   };
 }
 
-function createStubUpgradeService(updateAvailable: boolean, latestVersion: string) {
+function createStubKeyValueService(updateAvailable: boolean, latestVersion: string) {
+  const cachedResult = updateAvailable
+    ? { status: "checked", updateAvailable: true, latestVersion }
+    : { status: "checked", updateAvailable: false, latestVersion };
   return {
-    getUpgradeCheckResult: () =>
-      Promise.resolve(
-        updateAvailable
-          ? { status: "checked", updateAvailable: true, latestVersion }
-          : { status: "checked", updateAvailable: false, latestVersion },
-      ),
+    has: (key: string) => Promise.resolve(key === UPGRADE_CHECK_CACHE_KEY),
+    get: (key: string) =>
+      key === UPGRADE_CHECK_CACHE_KEY
+        ? Promise.resolve(cachedResult)
+        : Promise.reject(new Error(`Attempt to access unknown key: ${key}`)),
+    set: () => Promise.reject(new Error("not implemented")),
+    delete: () => Promise.reject(new Error("not implemented")),
   };
 }
 
 function createContext(
   printerService: unknown,
   asciiBannerGeneratorService: unknown,
-  upgradeService: unknown,
+  keyValueService: unknown,
 ): Context {
   const services: Record<string, unknown> = {
     [PRINTER_SERVICE_ID]: printerService,
     [ASCII_BANNER_GENERATOR_SERVICE_ID]: asciiBannerGeneratorService,
-    [UPGRADE_SERVICE_ID]: upgradeService,
+    [KEY_VALUE_SERVICE_ID]: keyValueService,
   };
   return {
     cliConfig: {
@@ -83,14 +87,14 @@ function createContext(
 describe("Banner upgrade hint (dynamic-cli-framework #141)", () => {
   test("prints the upgrade hint on the same line as the version when an upgrade is available", async () => {
     const lines: string[] = [];
-    const provider = new BannerServiceProvider(50);
+    const task = createBannerStartupTask(50);
     const context = createContext(
       createStubPrinterService(lines),
       createStubAsciiBannerGeneratorService(),
-      createStubUpgradeService(true, "99.0.0"),
+      createStubKeyValueService(true, "99.0.0"),
     );
 
-    await provider.initService(context);
+    await task.run(context);
 
     const versionLine = lines.find((line) => line.includes("version:"));
     expect(versionLine).toBeDefined();
@@ -99,14 +103,14 @@ describe("Banner upgrade hint (dynamic-cli-framework #141)", () => {
 
   test("does not print a hint when no upgrade is available", async () => {
     const lines: string[] = [];
-    const provider = new BannerServiceProvider(50);
+    const task = createBannerStartupTask(50);
     const context = createContext(
       createStubPrinterService(lines),
       createStubAsciiBannerGeneratorService(),
-      createStubUpgradeService(false, "1.8.2"),
+      createStubKeyValueService(false, "1.8.2"),
     );
 
-    await provider.initService(context);
+    await task.run(context);
 
     const versionLine = lines.find((line) => line.includes("version:"));
     expect(versionLine).toBeDefined();
