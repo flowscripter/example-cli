@@ -1,15 +1,15 @@
 import path from "node:path";
 import { describe, expect, test } from "bun:test";
 
-// Functional test for dynamic-cli-framework#142: the `version` command must no longer print the
-// upgrade-availability hint - it should only ever print the plain version number. (The hint
-// itself remains in the startup banner - see tests/banner_upgrade_hint_test.ts for #141.)
+// Functional test: the `version` command must not print the upgrade-availability hint - it
+// should only ever print the plain version number. (The hint itself is printed in the startup
+// banner - see tests/banner_upgrade_hint_test.ts.)
 //
 // This spawns example-cli's real executable entrypoint (`index.ts`, the same one the compiled
-// binary runs) as a subprocess against the real installed @flowscripter/dynamic-cli-framework@5.0.6,
+// binary runs) as a subprocess against the real installed @flowscripter/dynamic-cli-framework,
 // so the exact `version` command code path is exercised end to end. No mocking is needed here:
-// post-fix, VersionCommand.execute() prints `context.cliConfig.version` unconditionally and no
-// longer consults the upgrade service at all, so this holds regardless of whether an upgrade is
+// VersionCommand.execute() prints `context.cliConfig.version` unconditionally and does not
+// consult the upgrade service at all, so this holds regardless of whether an upgrade is
 // actually available on the real network.
 //
 // The banner (printed via printerService.info()) writes to stderr; command results (`version`'s
