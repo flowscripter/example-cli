@@ -5,7 +5,7 @@ import path from "node:path";
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
 import packageJson from "../package.json";
 
-// Functional test for dynamic-cli-framework#141/#213: the startup banner must print the
+// Functional test: the startup banner must print the
 // upgrade-availability hint "(X.Y.Z available, run 'app upgrade')" on the SAME line as
 // "version: X.Y.Z", sourced from the cached upgrade-check result.
 //
