@@ -25,12 +25,12 @@
   },
   "dependencies": {
     "@flowscripter/dynamic-cli-framework": "^7.1.1",
-    "@flowscripter/dynamic-cli-framework-api": "^4.2.0",
-    "@flowscripter/dynamic-plugin-framework": "2.2.14"
+    "@flowscripter/dynamic-cli-framework-api": "^4.2.2",
+    "@flowscripter/dynamic-plugin-framework": "2.2.16"
   },
   "devDependencies": {
     "@types/bun": "^1.4.2",
-    "@types/node": "^26.6.3",
+    "@types/node": "^26.6.4",
     "oxfmt": "0.71.0",
     "oxlint": "1.86.0"
   },
