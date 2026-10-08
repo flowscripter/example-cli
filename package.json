@@ -1,6 +1,6 @@
 {
   "name": "@flowscripter/example-cli",
-  "version": "3.0.9",
+  "version": "3.0.11",
   "description": "Simple example CLI using https://github.com/flowscripter/dynamic-cli-framework",
   "keywords": [
     "bun",
@@ -24,7 +24,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@flowscripter/dynamic-cli-framework": "^9.0.0",
+    "@flowscripter/dynamic-cli-framework": "^9.0.2",
     "@flowscripter/dynamic-cli-framework-api": "^5.0.0",
     "@flowscripter/dynamic-plugin-framework": "2.2.19",
     "prettier": "^3.9.9"
