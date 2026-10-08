@@ -3,6 +3,7 @@ import {
   createBannerStartupTask,
   DataDumpGeneratorServiceProvider,
   launchMultiCommandCLI,
+  PrettyPrinterServiceProvider,
   SyntaxHighlighterServiceProvider,
   TreePrinterServiceProvider,
 } from "@flowscripter/dynamic-cli-framework";
@@ -23,6 +24,7 @@ export async function cli(): Promise<void> {
     [
       new AsciiBannerGeneratorServiceProvider(45),
       new SyntaxHighlighterServiceProvider(40),
+      new PrettyPrinterServiceProvider(38),
       new TreePrinterServiceProvider(35),
       new DataDumpGeneratorServiceProvider(30),
     ],

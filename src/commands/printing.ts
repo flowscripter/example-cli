@@ -8,7 +8,9 @@ import {
   type DataDumpGeneratorService,
   DumpFormat,
   Icon,
+  PRETTY_PRINTER_SERVICE_ID,
   PRINTER_SERVICE_ID,
+  type PrettyPrinterService,
   type PrinterService,
   ProgressStyle,
   SpinnerStyle,
@@ -21,6 +23,7 @@ import {
   type TreePrinterService,
 } from "@flowscripter/dynamic-cli-framework";
 import { Buffer } from "node:buffer";
+import * as yaml from "prettier/plugins/yaml";
 
 async function sleep(seconds: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, seconds * 1000));
@@ -45,6 +48,9 @@ const printing: SubCommand = {
     const dataDumpGeneratorService = context.getServiceById(
       DATA_DUMP_GENERATOR_SERVICE_ID,
     ) as DataDumpGeneratorService;
+    const prettyPrinterService = context.getServiceById(
+      PRETTY_PRINTER_SERVICE_ID,
+    ) as PrettyPrinterService;
 
     // --- Basic Printer ---
     await printerService.print("--- Basic Printer ---\n");
@@ -73,6 +79,7 @@ const printing: SubCommand = {
       total: 3,
       current: 0,
       format: (value) => `${value}sec`,
+      formatRate: (rate) => `${rate.toFixed(1)}sec/s`,
     });
     await sleep(1);
     printerService.updateProgressBar(handle1, 1);
@@ -102,6 +109,7 @@ const printing: SubCommand = {
       current: 0,
       style: ProgressStyle.FILL,
       format: (value) => `${value}sec`,
+      formatRate: (rate) => `${rate.toFixed(1)}sec/s`,
     });
     await sleep(1);
     printerService.updateProgressBar(handle2, 1);
@@ -192,6 +200,20 @@ const printing: SubCommand = {
       format: DumpFormat.HEX,
     });
     await printerService.print(hexDump + "\n");
+
+    // --- Pretty Printing: JSON (built-in syntax) ---
+    await printerService.print("--- Pretty Printing: JSON (built-in syntax) ---\n");
+    const json = '{"name":"example-cli","tags":["cli","demo"],"nested":{"enabled":true,"count":3}}';
+    await printerService.print(await prettyPrinterService.prettify(json, "json"));
+
+    // --- Pretty Printing: YAML (added syntax) ---
+    await printerService.print("--- Pretty Printing: YAML (added syntax) ---\n");
+    if (!(await prettyPrinterService.getRegisteredSyntaxes()).includes("yaml")) {
+      await prettyPrinterService.registerSyntax("yaml", yaml);
+    }
+    const yamlText =
+      "name:   example-cli\ntags: [cli,   demo]\nnested: {enabled: true,   count: 3}\n";
+    await printerService.print(await prettyPrinterService.prettify(yamlText, "yaml"));
   },
 };
 
