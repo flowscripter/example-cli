@@ -28,6 +28,16 @@ def step_impl(context, message):
     context.pexpect_wrapper.expect(message)
 
 
+@then('the executable should have either output "{message}" or "{alternative}"')
+def step_impl(context, message, alternative):
+    output = list(context.pexpect_wrapper.output)
+    try:
+        context.pexpect_wrapper.expect(message)
+    except AssertionError:
+        context.pexpect_wrapper.output = output
+        context.pexpect_wrapper.expect(alternative)
+
+
 @when('the executable stdout is captured for "{args}"')
 def step_impl(context, args):
     wrapper = SubprocessWrapper(os.environ.get('EXECUTABLE'))
