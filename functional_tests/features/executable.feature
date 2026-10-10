@@ -19,7 +19,7 @@ Feature: Executable
     And the executable should have output "--- Data Dump ---"
     And the executable should have output "--- Pretty Printing: JSON (built-in syntax) ---"
     And the executable should have output "--- Pretty Printing: YAML (added syntax) ---"
-    And the executable should have output "enabled: true"
+    And the executable should have output "nested:"
 
   Scenario: Argument parsing demo
     When the executable is launched with "demo:arg-parsing true 1 hello"

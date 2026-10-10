@@ -14,6 +14,8 @@ import {
   type PrinterService,
   ProgressStyle,
   SpinnerStyle,
+  SYNTAX_HIGHLIGHTER_SERVICE_ID,
+  type SyntaxHighlighterService,
   type SubCommand,
   Table,
   TABLE_GENERATOR_SERVICE_ID,
@@ -23,6 +25,7 @@ import {
   type TreePrinterService,
 } from "@flowscripter/dynamic-cli-framework";
 import { Buffer } from "node:buffer";
+import highlightYaml from "highlight.js/lib/languages/yaml";
 import * as yaml from "prettier/plugins/yaml";
 
 async function sleep(seconds: number): Promise<void> {
@@ -51,6 +54,9 @@ const printing: SubCommand = {
     const prettyPrinterService = context.getServiceById(
       PRETTY_PRINTER_SERVICE_ID,
     ) as PrettyPrinterService;
+    const syntaxHighlighterService = context.getServiceById(
+      SYNTAX_HIGHLIGHTER_SERVICE_ID,
+    ) as SyntaxHighlighterService;
 
     // --- Basic Printer ---
     await printerService.print("--- Basic Printer ---\n");
@@ -204,16 +210,26 @@ const printing: SubCommand = {
     // --- Pretty Printing: JSON (built-in syntax) ---
     await printerService.print("--- Pretty Printing: JSON (built-in syntax) ---\n");
     const json = '{"name":"example-cli","tags":["cli","demo"],"nested":{"enabled":true,"count":3}}';
-    await printerService.print(await prettyPrinterService.prettify(json, "json"));
+    await printerService.print(
+      syntaxHighlighterService.highlight(await prettyPrinterService.prettify(json, "json"), "json"),
+    );
 
     // --- Pretty Printing: YAML (added syntax) ---
     await printerService.print("--- Pretty Printing: YAML (added syntax) ---\n");
     if (!(await prettyPrinterService.getRegisteredSyntaxes()).includes("yaml")) {
       await prettyPrinterService.registerSyntax("yaml", yaml);
     }
+    if (!syntaxHighlighterService.getRegisteredSyntaxes().includes("yaml")) {
+      syntaxHighlighterService.registerSyntax("yaml", highlightYaml);
+    }
     const yamlText =
       "name:   example-cli\ntags: [cli,   demo]\nnested: {enabled: true,   count: 3}\n";
-    await printerService.print(await prettyPrinterService.prettify(yamlText, "yaml"));
+    await printerService.print(
+      syntaxHighlighterService.highlight(
+        await prettyPrinterService.prettify(yamlText, "yaml"),
+        "yaml",
+      ),
+    );
   },
 };
 
