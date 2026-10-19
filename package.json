@@ -24,7 +24,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@flowscripter/dynamic-cli-framework": "^11.0.0",
+    "@flowscripter/dynamic-cli-framework": "^11.1.0",
     "@flowscripter/dynamic-cli-framework-api": "^5.0.2",
     "@flowscripter/dynamic-plugin-framework": "2.2.25",
     "highlight.js": "^11.12.0",
