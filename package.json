@@ -26,15 +26,15 @@
   "dependencies": {
     "@flowscripter/dynamic-cli-framework": "^12.2.8",
     "@flowscripter/dynamic-cli-framework-api": "^5.1.11",
-    "@flowscripter/dynamic-plugin-framework": "2.3.7",
+    "@flowscripter/dynamic-plugin-framework": "2.3.8",
     "highlight.js": "^11.12.0",
     "prettier": "^3.10.1"
   },
   "devDependencies": {
     "@types/bun": "^1.4.5",
-    "@types/node": "^26.6.6",
-    "oxfmt": "0.79.0",
-    "oxlint": "1.94.0"
+    "@types/node": "^26.6.11",
+    "oxfmt": "0.80.0",
+    "oxlint": "1.95.0"
   },
   "peerDependencies": {
     "typescript": "^7.0.2"
