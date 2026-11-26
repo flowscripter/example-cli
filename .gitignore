@@ -178,5 +178,7 @@ template-bun-executable
 /.releaserc
 functional_tests/features/support/__pycache__
 example-cli
-.claude
+.claude/*
+!.claude/CLAUDE.md
+!.claude/skills/
 functional_tests/.venv
