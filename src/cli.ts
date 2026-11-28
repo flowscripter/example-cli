@@ -52,7 +52,6 @@ export async function cli(): Promise<void> {
         supportedPlatforms: [
           { os: SupportedOs.LINUX, arch: SupportedArch.X64 },
           { os: SupportedOs.LINUX, arch: SupportedArch.ARM64 },
-          { os: SupportedOs.MACOS, arch: SupportedArch.X64 },
           { os: SupportedOs.MACOS, arch: SupportedArch.ARM64 },
           { os: SupportedOs.WINDOWS, arch: SupportedArch.X64 },
           { os: SupportedOs.WINDOWS, arch: SupportedArch.ARM64 },
