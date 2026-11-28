@@ -15,7 +15,7 @@
 **NOTE**: The binaries are 10's of megabytes in size as the entire Bun runtime
 is included.
 
-#### MacOS
+#### MacOS (Apple Silicon)
 
 Via [Homebrew](https://brew.sh/):
 
